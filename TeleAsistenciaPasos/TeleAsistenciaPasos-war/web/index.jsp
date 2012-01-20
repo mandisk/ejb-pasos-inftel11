@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hola Mundo!</h1>
+        <h1>Hola Mundo Tú!</h1>
     </body>
 </html>
