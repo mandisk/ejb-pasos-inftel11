@@ -69,7 +69,8 @@ CREATE TABLE Personas
 	provincia            VARCHAR2(50) NULL ,
 	codpostal            INTEGER NULL ,
 	fecnacimiento        DATE NULL ,
-	email                VARCHAR2(50) NULL 
+	email                VARCHAR2(50) NULL ,
+	nombre               VARCHAR2(50) NULL 
 );
 
 CREATE UNIQUE INDEX XPKPersonas ON Personas
@@ -138,6 +139,5 @@ ALTER TABLE Incidencias
 
 ALTER TABLE Usuarios
 	ADD (CONSTRAINT R_9 FOREIGN KEY (id_persona) REFERENCES Personas (id_persona) ON DELETE SET NULL);
-
 /
 
