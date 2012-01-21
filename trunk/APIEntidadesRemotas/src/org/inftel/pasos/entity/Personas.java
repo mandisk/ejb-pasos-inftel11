@@ -7,7 +7,6 @@ package org.inftel.pasos.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -15,12 +14,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -40,24 +39,31 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Personas.findByProvincia", query = "SELECT p FROM Personas p WHERE p.provincia = :provincia"),
     @NamedQuery(name = "Personas.findByCodpostal", query = "SELECT p FROM Personas p WHERE p.codpostal = :codpostal"),
     @NamedQuery(name = "Personas.findByFecnacimiento", query = "SELECT p FROM Personas p WHERE p.fecnacimiento = :fecnacimiento"),
-    @NamedQuery(name = "Personas.findByEmail", query = "SELECT p FROM Personas p WHERE p.email = :email")})
+    @NamedQuery(name = "Personas.findByEmail", query = "SELECT p FROM Personas p WHERE p.email = :email"),
+    @NamedQuery(name = "Personas.findByNombre", query = "SELECT p FROM Personas p WHERE p.nombre = :nombre")})
 public class Personas implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ID_PERSONA")
     private BigDecimal idPersona;
     @Column(name = "TELEFONO")
     private BigInteger telefono;
+    @Size(max = 50)
     @Column(name = "APELLIDO1")
     private String apellido1;
+    @Size(max = 50)
     @Column(name = "APELLIDO2")
     private String apellido2;
+    @Size(max = 50)
     @Column(name = "DIRECCION")
     private String direccion;
+    @Size(max = 100)
     @Column(name = "LOCALIDAD")
     private String localidad;
+    @Size(max = 50)
     @Column(name = "PROVINCIA")
     private String provincia;
     @Column(name = "CODPOSTAL")
@@ -65,14 +71,13 @@ public class Personas implements Serializable {
     @Column(name = "FECNACIMIENTO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecnacimiento;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 50)
     @Column(name = "EMAIL")
     private String email;
-    @OneToMany(mappedBy = "idPersona")
-    private Collection<Usuarios> usuariosCollection;
-    @OneToMany(mappedBy = "idPersona")
-    private Collection<Familiares> familiaresCollection;
-    @OneToMany(mappedBy = "idPersona")
-    private Collection<Empleados> empleadosCollection;
+    @Size(max = 50)
+    @Column(name = "NOMBRE")
+    private String nombre;
 
     public Personas() {
     }
@@ -161,31 +166,12 @@ public class Personas implements Serializable {
         this.email = email;
     }
 
-    @XmlTransient
-    public Collection<Usuarios> getUsuariosCollection() {
-        return usuariosCollection;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setUsuariosCollection(Collection<Usuarios> usuariosCollection) {
-        this.usuariosCollection = usuariosCollection;
-    }
-
-    @XmlTransient
-    public Collection<Familiares> getFamiliaresCollection() {
-        return familiaresCollection;
-    }
-
-    public void setFamiliaresCollection(Collection<Familiares> familiaresCollection) {
-        this.familiaresCollection = familiaresCollection;
-    }
-
-    @XmlTransient
-    public Collection<Empleados> getEmpleadosCollection() {
-        return empleadosCollection;
-    }
-
-    public void setEmpleadosCollection(Collection<Empleados> empleadosCollection) {
-        this.empleadosCollection = empleadosCollection;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override
