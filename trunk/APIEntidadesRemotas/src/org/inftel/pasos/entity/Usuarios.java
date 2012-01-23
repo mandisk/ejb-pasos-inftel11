@@ -6,6 +6,7 @@ package org.inftel.pasos.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,12 +34,15 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u"),
     @NamedQuery(name = "Usuarios.findByImei", query = "SELECT u FROM Usuarios u WHERE u.imei = :imei")})
 public class Usuarios implements Serializable {
-    private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID_USUARIO")
+    private BigDecimal idUsuario;
     @Column(name = "IMEI")
-    private BigDecimal imei;
+    private BigInteger imei;
+    private static final long serialVersionUID = 1L;
     @Lob
     @Column(name = "FOTO")
     private Serializable foto;
@@ -50,18 +55,6 @@ public class Usuarios implements Serializable {
     private Collection<Familiares> familiaresCollection;
 
     public Usuarios() {
-    }
-
-    public Usuarios(BigDecimal imei) {
-        this.imei = imei;
-    }
-
-    public BigDecimal getImei() {
-        return imei;
-    }
-
-    public void setImei(BigDecimal imei) {
-        this.imei = imei;
     }
 
     public Serializable getFoto() {
@@ -120,7 +113,32 @@ public class Usuarios implements Serializable {
 
     @Override
     public String toString() {
-        return "org.inftel.pasos.entity.Usuarios[ imei=" + imei + " ]";
+        String info = "";
+        info += "\nID USUARIO: " + idUsuario;
+        info += "\nIMEI: " + imei;
+        info += "\nFOTO: " + foto;
+        info += "\n" + idPersona.toString();
+        return info;
+    }
+
+    public Usuarios(BigDecimal idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public BigDecimal getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(BigDecimal idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public BigInteger getImei() {
+        return imei;
+    }
+
+    public void setImei(BigInteger imei) {
+        this.imei = imei;
     }
     
 }
