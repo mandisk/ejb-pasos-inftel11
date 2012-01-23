@@ -103,10 +103,12 @@ h1 a{ color:#fff; text-decoration: none; }
 .form p{ padding-bottom:2px; }
 
 .size1 { width:716px; }
+.size2 {width:300px;}
 textarea.size1 { height:70px; }
 
 .buttons { text-align: right; padding:10px;}
-.buttons .button{ margin-right:90px;}
+.buttons .buttonuser { margin-right:90px;}
+.buttons .buttonreg {position: absolute; left:249px;}
 
 .box-content { padding:10px; }
 
@@ -115,7 +117,10 @@ textarea.size1 { height:70px; }
 .coltext{width:100px; height:100px;}
 
 #footer { clear: both; width:100%; height:44px; background:url(images/footer.gif); line-height:44px; color:#fff;}
-#footer a{ color:#fff; }
+#footer a { color:#fff; }
+
+.footerrel {position:absolute; bottom:0px;}
+.footerabs {position: relative; bottom: 0px;}
 
 /*** CSS3 ***/
 .box { -moz-border-radius:5px; -webkit-border-radius:5px; -moz-box-shadow: 0 0 6px #978f6c; -webkit-box-shadow: 0 0 6px #978f6c;}

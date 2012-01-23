@@ -117,7 +117,7 @@
 						<!-- End Form -->
 						   <!-- Form Buttons -->
 						<div class="buttons">
-							<input type="button" class="button" value="Enviar Mensaje" />
+							<input type="button" class="button buttonuser" value="Enviar Mensaje" />
 						</div>
 						<!-- End Form Buttons -->	
 						

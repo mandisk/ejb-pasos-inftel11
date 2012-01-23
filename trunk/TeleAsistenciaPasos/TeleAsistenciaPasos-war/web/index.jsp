@@ -4,6 +4,20 @@
     Author     : aljiru
 --%>
 
+<<<<<<< .mine
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <div id="header"></div>
+        <div id="menu"></div>
+        <h1>Prueba web Teleasistencia</h1>
+        <div id="footer"></div>
+    </body>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>JSP Page</title>
@@ -22,6 +36,4 @@
             </table>
             <input type="submit" name="Enviar" value="Enviar">
         </center>
-
-</body>
 </html>
