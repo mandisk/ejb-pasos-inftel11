@@ -44,6 +44,8 @@ h1 a{ color:#fff; text-decoration: none; }
 
 .shell { width:90%; margin:0 auto; }
 
+#screenlog { background: url(images/backlogin.jpg); width:100%;height:100%;}
+
 #header { height:78px; background:url(images/header.gif); white-space:nowrap; }
 #header h1{ float:left; display:inline; padding-top:12px; }
 #top-navigation { float:right; white-space:nowrap; color:#fff; padding-top:15px; }
