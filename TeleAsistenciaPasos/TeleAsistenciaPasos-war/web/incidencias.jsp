@@ -165,7 +165,7 @@
 <!-- End Container -->
 
 <!-- Footer -->
-<div id="footer">
+<div id="footer" class="footerrel">
 		<span class="left">2012 - Teleasistencia</span>
 </div>
 <!-- End Footer -->
