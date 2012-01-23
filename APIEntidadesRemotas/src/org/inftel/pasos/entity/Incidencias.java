@@ -39,21 +39,22 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Incidencias.findByNivelBateria", query = "SELECT i FROM Incidencias i WHERE i.nivelBateria = :nivelBateria"),
     @NamedQuery(name = "Incidencias.findByNumSatelites", query = "SELECT i FROM Incidencias i WHERE i.numSatelites = :numSatelites")})
 public class Incidencias implements Serializable {
+    @Column(name = "FECHA")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "LONGITUD")
+    private BigDecimal longitud;
+    @Column(name = "LATITUD")
+    private BigDecimal latitud;
+    @Column(name = "ALTITUD")
+    private BigDecimal altitud;
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @Column(name = "INCIDENCIA")
     private BigDecimal incidencia;
-    @Column(name = "FECHA")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
-    @Column(name = "LONGITUD")
-    private String longitud;
-    @Column(name = "LATITUD")
-    private String latitud;
-    @Column(name = "ALTITUD")
-    private String altitud;
     @Column(name = "TEMPERATURA")
     private Double temperatura;
     @Column(name = "NIVEL_BATERIA")
@@ -80,38 +81,6 @@ public class Incidencias implements Serializable {
 
     public void setIncidencia(BigDecimal incidencia) {
         this.incidencia = incidencia;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getLongitud() {
-        return longitud;
-    }
-
-    public void setLongitud(String longitud) {
-        this.longitud = longitud;
-    }
-
-    public String getLatitud() {
-        return latitud;
-    }
-
-    public void setLatitud(String latitud) {
-        this.latitud = latitud;
-    }
-
-    public String getAltitud() {
-        return altitud;
-    }
-
-    public void setAltitud(String altitud) {
-        this.altitud = altitud;
     }
 
     public Double getTemperatura() {
@@ -177,6 +146,38 @@ public class Incidencias implements Serializable {
     @Override
     public String toString() {
         return "org.inftel.pasos.entity.Incidencias[ incidencia=" + incidencia + " ]";
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public BigDecimal getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(BigDecimal longitud) {
+        this.longitud = longitud;
+    }
+
+    public BigDecimal getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(BigDecimal latitud) {
+        this.latitud = latitud;
+    }
+
+    public BigDecimal getAltitud() {
+        return altitud;
+    }
+
+    public void setAltitud(BigDecimal altitud) {
+        this.altitud = altitud;
     }
     
 }

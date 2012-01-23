@@ -42,12 +42,16 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Personas.findByEmail", query = "SELECT p FROM Personas p WHERE p.email = :email"),
     @NamedQuery(name = "Personas.findByNombre", query = "SELECT p FROM Personas p WHERE p.nombre = :nombre")})
 public class Personas implements Serializable {
+    @Column(name = "FECNACIMIENTO")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecnacimiento;
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID_PERSONA")
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private BigDecimal idPersona;
     @Column(name = "TELEFONO")
     private BigInteger telefono;
@@ -68,10 +72,7 @@ public class Personas implements Serializable {
     private String provincia;
     @Column(name = "CODPOSTAL")
     private BigInteger codpostal;
-    @Column(name = "FECNACIMIENTO")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fecnacimiento;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    //@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 50)
     @Column(name = "EMAIL")
     private String email;
@@ -150,14 +151,6 @@ public class Personas implements Serializable {
         this.codpostal = codpostal;
     }
 
-    public Date getFecnacimiento() {
-        return fecnacimiento;
-    }
-
-    public void setFecnacimiento(Date fecnacimiento) {
-        this.fecnacimiento = fecnacimiento;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -196,7 +189,26 @@ public class Personas implements Serializable {
 
     @Override
     public String toString() {
-        return "org.inftel.pasos.entity.Personas[ idPersona=" + idPersona + " ]";
+        String info = "";
+        info += "ID: " + idPersona;
+        info += "\nNOMBRE: " + nombre;
+        info += "\nAPELLIDO1: " + apellido1;
+        info += "\nAPELLIDO2: " + apellido2;
+        info += "\nDIRECCION: " + direccion;
+        info += "\nLOCALIDAD: " + localidad;
+        info += "\nPROVINCIA: " + provincia;
+        info += "\nCODIGO POSTAL: " + codpostal;
+        info += "\nTELEFONO: " + telefono;
+        info += "\nEMAIL: " + email;
+        return info;
+    }
+
+    public Date getFecnacimiento() {
+        return fecnacimiento;
+    }
+
+    public void setFecnacimiento(Date fecnacimiento) {
+        this.fecnacimiento = fecnacimiento;
     }
     
 }

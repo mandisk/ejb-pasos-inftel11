@@ -15,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -28,6 +29,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Familiares.findAll", query = "SELECT f FROM Familiares f"),
     @NamedQuery(name = "Familiares.findByIdfamiliar", query = "SELECT f FROM Familiares f WHERE f.idfamiliar = :idfamiliar")})
 public class Familiares implements Serializable {
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "ID_FAMILIAR")
+    private BigDecimal idFamiliar;
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -106,6 +113,14 @@ public class Familiares implements Serializable {
     @Override
     public String toString() {
         return "org.inftel.pasos.entity.Familiares[ idfamiliar=" + idfamiliar + " ]";
+    }
+
+    public BigDecimal getIdFamiliar() {
+        return idFamiliar;
+    }
+
+    public void setIdFamiliar(BigDecimal idFamiliar) {
+        this.idFamiliar = idFamiliar;
     }
     
 }
