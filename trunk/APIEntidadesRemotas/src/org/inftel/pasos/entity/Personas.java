@@ -11,9 +11,12 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -51,7 +54,8 @@ public class Personas implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID_PERSONA")
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="personas_seq_gen")
+    @SequenceGenerator(name="personas_seq_gen", sequenceName="PERSONAS_SEQUENCE")
     private BigDecimal idPersona;
     @Column(name = "TELEFONO")
     private BigInteger telefono;
@@ -190,8 +194,7 @@ public class Personas implements Serializable {
     @Override
     public String toString() {
         String info = "";
-        info += "ID: " + idPersona;
-        info += "\nNOMBRE: " + nombre;
+        info += "NOMBRE: " + nombre;
         info += "\nAPELLIDO1: " + apellido1;
         info += "\nAPELLIDO2: " + apellido2;
         info += "\nDIRECCION: " + direccion;

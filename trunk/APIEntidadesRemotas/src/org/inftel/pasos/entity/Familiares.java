@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Familiares.findAll", query = "SELECT f FROM Familiares f"),
-    @NamedQuery(name = "Familiares.findByIdfamiliar", query = "SELECT f FROM Familiares f WHERE f.idfamiliar = :idfamiliar")})
+    @NamedQuery(name = "Familiares.findByIdfamiliar", query = "SELECT f FROM Familiares f WHERE f.idFamiliar = :idFamiliar")})
 public class Familiares implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -36,11 +36,6 @@ public class Familiares implements Serializable {
     @Column(name = "ID_FAMILIAR")
     private BigDecimal idFamiliar;
     private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @Column(name = "IDFAMILIAR")
-    private BigDecimal idfamiliar;
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "IMEI")
     @ManyToOne
     private Usuarios idUsuario;
@@ -54,16 +49,8 @@ public class Familiares implements Serializable {
     public Familiares() {
     }
 
-    public Familiares(BigDecimal idfamiliar) {
-        this.idfamiliar = idfamiliar;
-    }
-
-    public BigDecimal getIdfamiliar() {
-        return idfamiliar;
-    }
-
-    public void setIdfamiliar(BigDecimal idfamiliar) {
-        this.idfamiliar = idfamiliar;
+    public Familiares(BigDecimal idFamiliar) {
+        this.idFamiliar = idFamiliar;
     }
 
     public Usuarios getIdUsuario() {
@@ -93,7 +80,7 @@ public class Familiares implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idfamiliar != null ? idfamiliar.hashCode() : 0);
+        hash += (idFamiliar != null ? idFamiliar.hashCode() : 0);
         return hash;
     }
 
@@ -104,7 +91,7 @@ public class Familiares implements Serializable {
             return false;
         }
         Familiares other = (Familiares) object;
-        if ((this.idfamiliar == null && other.idfamiliar != null) || (this.idfamiliar != null && !this.idfamiliar.equals(other.idfamiliar))) {
+        if ((this.idFamiliar == null && other.idFamiliar != null) || (this.idFamiliar != null && !this.idFamiliar.equals(other.idFamiliar))) {
             return false;
         }
         return true;
@@ -112,7 +99,7 @@ public class Familiares implements Serializable {
 
     @Override
     public String toString() {
-        return "org.inftel.pasos.entity.Familiares[ idfamiliar=" + idfamiliar + " ]";
+        return "org.inftel.pasos.entity.Familiares[ idFamiliar=" + idFamiliar + " ]";
     }
 
     public BigDecimal getIdFamiliar() {

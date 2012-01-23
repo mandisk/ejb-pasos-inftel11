@@ -9,8 +9,11 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -18,6 +21,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,6 +43,8 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID_USUARIO")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="usuarios_seq_gen")
+    @SequenceGenerator(name="usuarios_seq_gen", sequenceName="PERSONAS_SEQUENCE")
     private BigDecimal idUsuario;
     @Column(name = "IMEI")
     private BigInteger imei;
@@ -49,7 +55,7 @@ public class Usuarios implements Serializable {
     @OneToMany(mappedBy = "idUsuario")
     private Collection<Incidencias> incidenciasCollection;
     @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     private Personas idPersona;
     @OneToMany(mappedBy = "idUsuario")
     private Collection<Familiares> familiaresCollection;
@@ -114,7 +120,6 @@ public class Usuarios implements Serializable {
     @Override
     public String toString() {
         String info = "";
-        info += "\nID USUARIO: " + idUsuario;
         info += "\nIMEI: " + imei;
         info += "\nFOTO: " + foto;
         info += "\n" + idPersona.toString();
