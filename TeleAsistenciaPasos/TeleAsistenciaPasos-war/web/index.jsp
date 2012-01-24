@@ -13,18 +13,33 @@
         <link rel="stylesheet" type="text/css" href="estilo.css" />
     </head>
     <body id="screenlog">
-            Teleasisencia para escaladores
+        <!-- Log in -->
+        <div id="contenlog">
+            <span>Teleasisencia para escaladores</span>
+            
+            <!-- Logo User -->
+            <div id="logouser"></div>
+            <!-- End Logo User -->
+            <form action="/TeleAsistenciaPasos-war/ServletLogin" method="post">
             <!-- Form -->
-						<div class="form">
-								<p>
-									<label>Usuario:</label>
-									<input type="text" class="field size2" />
-								</p>	
-                                                                <p>
-									<label>Contraseña:</label>
-									<input type="text" class="field size2" />
-								</p>
-						</div>
-						<!-- End Form -->    
+            <div class="form">
+                    <p>
+                            <label>Usuario:</label>
+                            <input type="text" class="field size2" />
+		    </p>	
+                    <p>
+                            <label>Contraseña:</label>
+                            <input type="text" class="field size2" />
+                    </p>
+            </div>
+            <!-- End Form -->
+            <!-- Form Buttons -->
+            <div class="buttons">
+                    <input type="submit" class="button buttonlog" value="Entrar" />
+            </div>
+            <!-- End Form Buttons -->
+            </form>
+        </div>
+        <!-- End Log in -->
     </body>
 </html>
