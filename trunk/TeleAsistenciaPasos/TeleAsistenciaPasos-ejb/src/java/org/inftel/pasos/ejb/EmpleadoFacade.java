@@ -7,14 +7,14 @@ package org.inftel.pasos.ejb;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import org.inftel.pasos.entity.Personas;
+import org.inftel.pasos.entity.Empleado;
 
 /**
  *
  * @author aljiru
  */
 @Stateless
-public class PersonasFacade extends AbstractFacade<Personas> implements PersonasFacadeRemote {
+public class EmpleadoFacade extends AbstractFacade<Empleado> implements EmpleadoFacadeRemote {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-ejbPU")
     private EntityManager em;
 
@@ -22,8 +22,8 @@ public class PersonasFacade extends AbstractFacade<Personas> implements Personas
         return em;
     }
 
-    public PersonasFacade() {
-        super(Personas.class);
+    public EmpleadoFacade() {
+        super(Empleado.class);
     }
     
 }

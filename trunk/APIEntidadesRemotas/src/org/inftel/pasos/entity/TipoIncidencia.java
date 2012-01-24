@@ -15,6 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -23,28 +25,30 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author aljiru
  */
 @Entity
-@Table(name = "TIPO_INCIDENCIAS")
+@Table(name = "TIPO_INCIDENCIA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoIncidencias.findAll", query = "SELECT t FROM TipoIncidencias t"),
-    @NamedQuery(name = "TipoIncidencias.findById", query = "SELECT t FROM TipoIncidencias t WHERE t.id = :id"),
-    @NamedQuery(name = "TipoIncidencias.findByDescripcion", query = "SELECT t FROM TipoIncidencias t WHERE t.descripcion = :descripcion")})
-public class TipoIncidencias implements Serializable {
+    @NamedQuery(name = "TipoIncidencia.findAll", query = "SELECT t FROM TipoIncidencia t"),
+    @NamedQuery(name = "TipoIncidencia.findById", query = "SELECT t FROM TipoIncidencia t WHERE t.id = :id"),
+    @NamedQuery(name = "TipoIncidencia.findByDescripcion", query = "SELECT t FROM TipoIncidencia t WHERE t.descripcion = :descripcion")})
+public class TipoIncidencia implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ID")
     private BigDecimal id;
+    @Size(max = 200)
     @Column(name = "DESCRIPCION")
     private String descripcion;
     @OneToMany(mappedBy = "idTincidencia")
-    private Collection<Incidencias> incidenciasCollection;
+    private Collection<Incidencia> incidenciaCollection;
 
-    public TipoIncidencias() {
+    public TipoIncidencia() {
     }
 
-    public TipoIncidencias(BigDecimal id) {
+    public TipoIncidencia(BigDecimal id) {
         this.id = id;
     }
 
@@ -65,12 +69,12 @@ public class TipoIncidencias implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Incidencias> getIncidenciasCollection() {
-        return incidenciasCollection;
+    public Collection<Incidencia> getIncidenciaCollection() {
+        return incidenciaCollection;
     }
 
-    public void setIncidenciasCollection(Collection<Incidencias> incidenciasCollection) {
-        this.incidenciasCollection = incidenciasCollection;
+    public void setIncidenciaCollection(Collection<Incidencia> incidenciaCollection) {
+        this.incidenciaCollection = incidenciaCollection;
     }
 
     @Override
@@ -83,10 +87,10 @@ public class TipoIncidencias implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TipoIncidencias)) {
+        if (!(object instanceof TipoIncidencia)) {
             return false;
         }
-        TipoIncidencias other = (TipoIncidencias) object;
+        TipoIncidencia other = (TipoIncidencia) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -95,7 +99,7 @@ public class TipoIncidencias implements Serializable {
 
     @Override
     public String toString() {
-        return "org.inftel.pasos.entity.TipoIncidencias[ id=" + id + " ]";
+        return "org.inftel.pasos.entity.TipoIncidencia[ id=" + id + " ]";
     }
     
 }
