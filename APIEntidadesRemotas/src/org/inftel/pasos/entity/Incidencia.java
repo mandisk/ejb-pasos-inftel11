@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -26,52 +27,52 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author aljiru
  */
 @Entity
-@Table(name = "INCIDENCIAS")
+@Table(name = "INCIDENCIA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Incidencias.findAll", query = "SELECT i FROM Incidencias i"),
-    @NamedQuery(name = "Incidencias.findByIncidencia", query = "SELECT i FROM Incidencias i WHERE i.incidencia = :incidencia"),
-    @NamedQuery(name = "Incidencias.findByFecha", query = "SELECT i FROM Incidencias i WHERE i.fecha = :fecha"),
-    @NamedQuery(name = "Incidencias.findByLongitud", query = "SELECT i FROM Incidencias i WHERE i.longitud = :longitud"),
-    @NamedQuery(name = "Incidencias.findByLatitud", query = "SELECT i FROM Incidencias i WHERE i.latitud = :latitud"),
-    @NamedQuery(name = "Incidencias.findByAltitud", query = "SELECT i FROM Incidencias i WHERE i.altitud = :altitud"),
-    @NamedQuery(name = "Incidencias.findByTemperatura", query = "SELECT i FROM Incidencias i WHERE i.temperatura = :temperatura"),
-    @NamedQuery(name = "Incidencias.findByNivelBateria", query = "SELECT i FROM Incidencias i WHERE i.nivelBateria = :nivelBateria"),
-    @NamedQuery(name = "Incidencias.findByNumSatelites", query = "SELECT i FROM Incidencias i WHERE i.numSatelites = :numSatelites")})
-public class Incidencias implements Serializable {
+    @NamedQuery(name = "Incidencia.findAll", query = "SELECT i FROM Incidencia i"),
+    @NamedQuery(name = "Incidencia.findByIncidencia", query = "SELECT i FROM Incidencia i WHERE i.incidencia = :incidencia"),
+    @NamedQuery(name = "Incidencia.findByFecha", query = "SELECT i FROM Incidencia i WHERE i.fecha = :fecha"),
+    @NamedQuery(name = "Incidencia.findByLongitud", query = "SELECT i FROM Incidencia i WHERE i.longitud = :longitud"),
+    @NamedQuery(name = "Incidencia.findByLatitud", query = "SELECT i FROM Incidencia i WHERE i.latitud = :latitud"),
+    @NamedQuery(name = "Incidencia.findByAltitud", query = "SELECT i FROM Incidencia i WHERE i.altitud = :altitud"),
+    @NamedQuery(name = "Incidencia.findByTemperatura", query = "SELECT i FROM Incidencia i WHERE i.temperatura = :temperatura"),
+    @NamedQuery(name = "Incidencia.findByNivelBateria", query = "SELECT i FROM Incidencia i WHERE i.nivelBateria = :nivelBateria"),
+    @NamedQuery(name = "Incidencia.findByNumSatelites", query = "SELECT i FROM Incidencia i WHERE i.numSatelites = :numSatelites")})
+public class Incidencia implements Serializable {
+    private static final long serialVersionUID = 1L;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "INCIDENCIA")
+    private BigDecimal incidencia;
     @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "LONGITUD")
     private BigDecimal longitud;
     @Column(name = "LATITUD")
     private BigDecimal latitud;
     @Column(name = "ALTITUD")
     private BigDecimal altitud;
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @Column(name = "INCIDENCIA")
-    private BigDecimal incidencia;
     @Column(name = "TEMPERATURA")
     private Double temperatura;
     @Column(name = "NIVEL_BATERIA")
     private BigInteger nivelBateria;
     @Column(name = "NUM_SATELITES")
     private BigInteger numSatelites;
-    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "IMEI")
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @ManyToOne
-    private Usuarios idUsuario;
+    private Usuario idUsuario;
     @JoinColumn(name = "ID_TINCIDENCIA", referencedColumnName = "ID")
     @ManyToOne
-    private TipoIncidencias idTincidencia;
+    private TipoIncidencia idTincidencia;
 
-    public Incidencias() {
+    public Incidencia() {
     }
 
-    public Incidencias(BigDecimal incidencia) {
+    public Incidencia(BigDecimal incidencia) {
         this.incidencia = incidencia;
     }
 
@@ -81,71 +82,6 @@ public class Incidencias implements Serializable {
 
     public void setIncidencia(BigDecimal incidencia) {
         this.incidencia = incidencia;
-    }
-
-    public Double getTemperatura() {
-        return temperatura;
-    }
-
-    public void setTemperatura(Double temperatura) {
-        this.temperatura = temperatura;
-    }
-
-    public BigInteger getNivelBateria() {
-        return nivelBateria;
-    }
-
-    public void setNivelBateria(BigInteger nivelBateria) {
-        this.nivelBateria = nivelBateria;
-    }
-
-    public BigInteger getNumSatelites() {
-        return numSatelites;
-    }
-
-    public void setNumSatelites(BigInteger numSatelites) {
-        this.numSatelites = numSatelites;
-    }
-
-    public Usuarios getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(Usuarios idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public TipoIncidencias getIdTincidencia() {
-        return idTincidencia;
-    }
-
-    public void setIdTincidencia(TipoIncidencias idTincidencia) {
-        this.idTincidencia = idTincidencia;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (incidencia != null ? incidencia.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Incidencias)) {
-            return false;
-        }
-        Incidencias other = (Incidencias) object;
-        if ((this.incidencia == null && other.incidencia != null) || (this.incidencia != null && !this.incidencia.equals(other.incidencia))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.inftel.pasos.entity.Incidencias[ incidencia=" + incidencia + " ]";
     }
 
     public Date getFecha() {
@@ -178,6 +114,71 @@ public class Incidencias implements Serializable {
 
     public void setAltitud(BigDecimal altitud) {
         this.altitud = altitud;
+    }
+
+    public Double getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(Double temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public BigInteger getNivelBateria() {
+        return nivelBateria;
+    }
+
+    public void setNivelBateria(BigInteger nivelBateria) {
+        this.nivelBateria = nivelBateria;
+    }
+
+    public BigInteger getNumSatelites() {
+        return numSatelites;
+    }
+
+    public void setNumSatelites(BigInteger numSatelites) {
+        this.numSatelites = numSatelites;
+    }
+
+    public Usuario getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(Usuario idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public TipoIncidencia getIdTincidencia() {
+        return idTincidencia;
+    }
+
+    public void setIdTincidencia(TipoIncidencia idTincidencia) {
+        this.idTincidencia = idTincidencia;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (incidencia != null ? incidencia.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Incidencia)) {
+            return false;
+        }
+        Incidencia other = (Incidencia) object;
+        if ((this.incidencia == null && other.incidencia != null) || (this.incidencia != null && !this.incidencia.equals(other.incidencia))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "org.inftel.pasos.entity.Incidencia[ incidencia=" + incidencia + " ]";
     }
     
 }

@@ -23,50 +23,47 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author aljiru
  */
 @Entity
-@Table(name = "FAMILIARES")
+@Table(name = "FAMILIAR")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Familiares.findAll", query = "SELECT f FROM Familiares f"),
-    @NamedQuery(name = "Familiares.findByIdfamiliar", query = "SELECT f FROM Familiares f WHERE f.idFamiliar = :idFamiliar")})
-public class Familiares implements Serializable {
+    @NamedQuery(name = "Familiar.findAll", query = "SELECT f FROM Familiar f"),
+    @NamedQuery(name = "Familiar.findByIdFamiliar", query = "SELECT f FROM Familiar f WHERE f.idFamiliar = :idFamiliar")})
+public class Familiar implements Serializable {
+    private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID_FAMILIAR")
     private BigDecimal idFamiliar;
-    private static final long serialVersionUID = 1L;
-    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "IMEI")
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @ManyToOne
-    private Usuarios idUsuario;
-    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
-    @ManyToOne
-    private Personas idPersona;
+    private Usuario idUsuario;
     @JoinColumn(name = "ID_DISPONIBILIDAD", referencedColumnName = "ID")
     @ManyToOne
     private Disponibilidad idDisponibilidad;
 
-    public Familiares() {
+    public Familiar() {
     }
 
-    public Familiares(BigDecimal idFamiliar) {
+    public Familiar(BigDecimal idFamiliar) {
         this.idFamiliar = idFamiliar;
     }
 
-    public Usuarios getIdUsuario() {
+    public BigDecimal getIdFamiliar() {
+        return idFamiliar;
+    }
+
+    public void setIdFamiliar(BigDecimal idFamiliar) {
+        this.idFamiliar = idFamiliar;
+    }
+
+    public Usuario getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(Usuarios idUsuario) {
+    public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public Personas getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Personas idPersona) {
-        this.idPersona = idPersona;
     }
 
     public Disponibilidad getIdDisponibilidad() {
@@ -87,10 +84,10 @@ public class Familiares implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Familiares)) {
+        if (!(object instanceof Familiar)) {
             return false;
         }
-        Familiares other = (Familiares) object;
+        Familiar other = (Familiar) object;
         if ((this.idFamiliar == null && other.idFamiliar != null) || (this.idFamiliar != null && !this.idFamiliar.equals(other.idFamiliar))) {
             return false;
         }
@@ -99,15 +96,7 @@ public class Familiares implements Serializable {
 
     @Override
     public String toString() {
-        return "org.inftel.pasos.entity.Familiares[ idFamiliar=" + idFamiliar + " ]";
-    }
-
-    public BigDecimal getIdFamiliar() {
-        return idFamiliar;
-    }
-
-    public void setIdFamiliar(BigDecimal idFamiliar) {
-        this.idFamiliar = idFamiliar;
+        return "org.inftel.pasos.entity.Familiar[ idFamiliar=" + idFamiliar + " ]";
     }
     
 }

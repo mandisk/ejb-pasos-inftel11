@@ -7,6 +7,7 @@ package org.inftel.pasos.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,31 +25,29 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author aljiru
  */
 @Entity
-@Table(name = "PERSONAS")
+@Table(name = "PERSONA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Personas.findAll", query = "SELECT p FROM Personas p"),
-    @NamedQuery(name = "Personas.findByIdPersona", query = "SELECT p FROM Personas p WHERE p.idPersona = :idPersona"),
-    @NamedQuery(name = "Personas.findByTelefono", query = "SELECT p FROM Personas p WHERE p.telefono = :telefono"),
-    @NamedQuery(name = "Personas.findByApellido1", query = "SELECT p FROM Personas p WHERE p.apellido1 = :apellido1"),
-    @NamedQuery(name = "Personas.findByApellido2", query = "SELECT p FROM Personas p WHERE p.apellido2 = :apellido2"),
-    @NamedQuery(name = "Personas.findByDireccion", query = "SELECT p FROM Personas p WHERE p.direccion = :direccion"),
-    @NamedQuery(name = "Personas.findByLocalidad", query = "SELECT p FROM Personas p WHERE p.localidad = :localidad"),
-    @NamedQuery(name = "Personas.findByProvincia", query = "SELECT p FROM Personas p WHERE p.provincia = :provincia"),
-    @NamedQuery(name = "Personas.findByCodpostal", query = "SELECT p FROM Personas p WHERE p.codpostal = :codpostal"),
-    @NamedQuery(name = "Personas.findByFecnacimiento", query = "SELECT p FROM Personas p WHERE p.fecnacimiento = :fecnacimiento"),
-    @NamedQuery(name = "Personas.findByEmail", query = "SELECT p FROM Personas p WHERE p.email = :email"),
-    @NamedQuery(name = "Personas.findByNombre", query = "SELECT p FROM Personas p WHERE p.nombre = :nombre")})
-public class Personas implements Serializable {
-    @Column(name = "FECNACIMIENTO")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fecnacimiento;
+    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
+    @NamedQuery(name = "Persona.findByIdPersona", query = "SELECT p FROM Persona p WHERE p.idPersona = :idPersona"),
+    @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono"),
+    @NamedQuery(name = "Persona.findByApellido1", query = "SELECT p FROM Persona p WHERE p.apellido1 = :apellido1"),
+    @NamedQuery(name = "Persona.findByApellido2", query = "SELECT p FROM Persona p WHERE p.apellido2 = :apellido2"),
+    @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion"),
+    @NamedQuery(name = "Persona.findByLocalidad", query = "SELECT p FROM Persona p WHERE p.localidad = :localidad"),
+    @NamedQuery(name = "Persona.findByProvincia", query = "SELECT p FROM Persona p WHERE p.provincia = :provincia"),
+    @NamedQuery(name = "Persona.findByCodpostal", query = "SELECT p FROM Persona p WHERE p.codpostal = :codpostal"),
+    @NamedQuery(name = "Persona.findByFecnacimiento", query = "SELECT p FROM Persona p WHERE p.fecnacimiento = :fecnacimiento"),
+    @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email"),
+    @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre")})
+public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -76,18 +76,25 @@ public class Personas implements Serializable {
     private String provincia;
     @Column(name = "CODPOSTAL")
     private BigInteger codpostal;
-    //@Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Column(name = "FECNACIMIENTO")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecnacimiento;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 50)
     @Column(name = "EMAIL")
     private String email;
     @Size(max = 50)
     @Column(name = "NOMBRE")
     private String nombre;
+    @OneToMany(mappedBy = "idPersona")
+    private Collection<Usuario> usuarioCollection;
+    @OneToMany(mappedBy = "idPersona")
+    private Collection<Empleado> empleadoCollection;
 
-    public Personas() {
+    public Persona() {
     }
 
-    public Personas(BigDecimal idPersona) {
+    public Persona(BigDecimal idPersona) {
         this.idPersona = idPersona;
     }
 
@@ -155,6 +162,14 @@ public class Personas implements Serializable {
         this.codpostal = codpostal;
     }
 
+    public Date getFecnacimiento() {
+        return fecnacimiento;
+    }
+
+    public void setFecnacimiento(Date fecnacimiento) {
+        this.fecnacimiento = fecnacimiento;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -171,6 +186,24 @@ public class Personas implements Serializable {
         this.nombre = nombre;
     }
 
+    @XmlTransient
+    public Collection<Usuario> getUsuarioCollection() {
+        return usuarioCollection;
+    }
+
+    public void setUsuarioCollection(Collection<Usuario> usuarioCollection) {
+        this.usuarioCollection = usuarioCollection;
+    }
+
+    @XmlTransient
+    public Collection<Empleado> getEmpleadoCollection() {
+        return empleadoCollection;
+    }
+
+    public void setEmpleadoCollection(Collection<Empleado> empleadoCollection) {
+        this.empleadoCollection = empleadoCollection;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -181,10 +214,10 @@ public class Personas implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Personas)) {
+        if (!(object instanceof Persona)) {
             return false;
         }
-        Personas other = (Personas) object;
+        Persona other = (Persona) object;
         if ((this.idPersona == null && other.idPersona != null) || (this.idPersona != null && !this.idPersona.equals(other.idPersona))) {
             return false;
         }
@@ -204,14 +237,6 @@ public class Personas implements Serializable {
         info += "\nTELEFONO: " + telefono;
         info += "\nEMAIL: " + email;
         return info;
-    }
-
-    public Date getFecnacimiento() {
-        return fecnacimiento;
-    }
-
-    public void setFecnacimiento(Date fecnacimiento) {
-        this.fecnacimiento = fecnacimiento;
     }
     
 }
