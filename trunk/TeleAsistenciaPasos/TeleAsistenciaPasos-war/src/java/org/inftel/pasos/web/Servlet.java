@@ -9,11 +9,13 @@ import java.io.PrintWriter;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.inftel.pasos.beans.TramaBean;
 
 /**
  *
@@ -25,13 +27,7 @@ public class Servlet extends HttpServlet {
     private String trama;
     private String tramaPE;
     Vector<Integer> a = new Vector<Integer>();
-    int date;
-    int hora;
-    int lon;
-    int lat;
-    int pb;
-    int alt;
-    int temp;
+   TramaBean t = new TramaBean();
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -55,12 +51,13 @@ public class Servlet extends HttpServlet {
 
             trama = request.getParameter("trama");
             desmontarAU();
-            out.println("<p> Fecha:  " + date + "</p>");
-            out.println("<p> Hora: " + hora + "</p>");
-            out.println("<p> longitud: " + lon + "</p>");
+            request.setAttribute("t", t);
+            
             out.println("</body>");
             out.println("</html>");
 
+            RequestDispatcher d = getServletContext().getRequestDispatcher("/trama/prueba.jsp");
+            d.forward(request, response);
         } finally {
             out.close();
         }
@@ -74,7 +71,7 @@ public class Servlet extends HttpServlet {
 
         for (i = 0; i < b.length; i++) {
             String aux = b[i];
-            Pattern patron = Pattern.compile("([A-Z]+)");; //Cojo el primer grupo de caracteres
+            Pattern patron = Pattern.compile("([A-Z]+)"); //Cojo el primer grupo de caracteres
             Matcher matcher = patron.matcher(aux);
             matcher.find();
 
@@ -84,19 +81,21 @@ public class Servlet extends HttpServlet {
 
             if ("*$AU".equals(matcher2.group(1))) {
             } else if ("LD".equals(matcher.group(1))) {
-                date = Integer.parseInt(matcher2.group(1));
+                t.setDate(Integer.parseInt(matcher2.group(1)));
             } else if ("LH".equals(matcher.group(1))) {
-                hora = Integer.parseInt(matcher2.group(1));
+               t.setHora(Integer.parseInt(matcher2.group(1))); 
             } else if ("LN".equals(matcher.group(1))) {
-                lon = Integer.parseInt(matcher2.group(1));
+                               t.setLon(Integer.parseInt(matcher2.group(1))); 
+
             } else if ("LT".equals(matcher.group(1))) {
-                lat = Integer.parseInt(matcher2.group(1));
+                               t.setLat(Integer.parseInt(matcher2.group(1))); 
+
             } else if ("PB".equals(matcher.group(1))) {
-                pb = Integer.parseInt(matcher2.group(1));
+                t.setPb(Integer.parseInt(matcher2.group(1)));
             } else if ("LA".equals(matcher.group(1))) {
-                alt = Integer.parseInt(matcher2.group(1));
+                t.setAlt(Integer.parseInt(matcher2.group(1)));
             } else if ("DT".equals(matcher.group(1))) {
-                temp = Integer.parseInt(matcher2.group(1));
+                t.setTemp(Integer.parseInt(matcher2.group(1)));
             }
         }
 
