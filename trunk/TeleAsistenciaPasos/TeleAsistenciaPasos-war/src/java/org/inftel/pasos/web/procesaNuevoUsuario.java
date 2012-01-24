@@ -4,9 +4,9 @@
  */
 package org.inftel.pasos.web;
 
+import org.inftel.pasos.util.Utilities;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +26,9 @@ import org.inftel.pasos.entity.Usuario;
 public class procesaNuevoUsuario extends HttpServlet {
 
     @EJB
-    private UsuarioFacadeRemote usuariosFacade;
+    private UsuarioFacadeRemote usuarioFacade;
     @EJB
-    private PersonaFacadeRemote personasFacade;
+    private PersonaFacadeRemote personaFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -42,22 +42,9 @@ public class procesaNuevoUsuario extends HttpServlet {
 
         Usuario user = null;
         try {
-            user = new Usuario();
-            user.setImei(new BigInteger(request.getParameter("imei")));
-            user.setFoto(Utilities.formToBeanImage(request));
-            Persona person = new Persona();
-            person.setNombre(request.getParameter("nombre"));
-            person.setApellido1(request.getParameter("apellido1"));
-            person.setApellido2(request.getParameter("apellido2"));
-            person.setDireccion(request.getParameter("direccion"));
-            person.setLocalidad(request.getParameter("localidad"));
-            person.setProvincia(request.getParameter("provincia"));
-            person.setCodpostal(new BigInteger(request.getParameter("codPostal")));
-            person.setTelefono(new BigInteger(request.getParameter("telefono")));
-            person.setEmail(request.getParameter("email"));
-
-            user.setIdPersona(person);
-            usuariosFacade.create(user);
+            user = Utilities.formToBeanUser(request);
+            System.out.println(user.toString());
+            usuarioFacade.create(user);
         } catch (Exception e) {
             System.out.println("Hostia tu!" + e.getMessage());
         }
@@ -77,7 +64,7 @@ public class procesaNuevoUsuario extends HttpServlet {
         File file = new File(filename);
         if (!file.exists()) {
             OutputStream os = new FileOutputStream(file);
-            byte[] data = (byte[]) usuario.getFoto();
+            byte[] data = usuario.getFoto();
             os.write(data, 0, data.length);
             os.close();
         }

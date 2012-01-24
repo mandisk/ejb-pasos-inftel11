@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -53,7 +54,7 @@ public class Usuario implements Serializable {
     @Column(name = "FOTO")
     private byte[] foto;
     @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     private Persona idPersona;
     @OneToMany(mappedBy = "idUsuario")
     private Collection<Incidencia> incidenciaCollection;
