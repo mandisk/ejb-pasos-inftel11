@@ -4,13 +4,13 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/teleAsistencia</jta-data-source>
     <class>org.inftel.pasos.entity.Disponibilidad</class>
-    <class>org.inftel.pasos.entity.Empleados</class>
-    <class>org.inftel.pasos.entity.Familiares</class>
-    <class>org.inftel.pasos.entity.Incidencias</class>
-    <class>org.inftel.pasos.entity.Personas</class>
-    <class>org.inftel.pasos.entity.TipoIncidencias</class>
-    <class>org.inftel.pasos.entity.Turnos</class>
-    <class>org.inftel.pasos.entity.Usuarios</class>
+    <class>org.inftel.pasos.entity.Empleado</class>
+    <class>org.inftel.pasos.entity.Familiar</class>
+    <class>org.inftel.pasos.entity.Incidencia</class>
+    <class>org.inftel.pasos.entity.Persona</class>
+    <class>org.inftel.pasos.entity.TipoIncidencia</class>
+    <class>org.inftel.pasos.entity.Turno</class>
+    <class>org.inftel.pasos.entity.Usuario</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
