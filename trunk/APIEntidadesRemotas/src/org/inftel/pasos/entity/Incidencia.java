@@ -11,11 +11,14 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,16 +43,21 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Incidencia.findByNivelBateria", query = "SELECT i FROM Incidencia i WHERE i.nivelBateria = :nivelBateria"),
     @NamedQuery(name = "Incidencia.findByNumSatelites", query = "SELECT i FROM Incidencia i WHERE i.numSatelites = :numSatelites")})
 public class Incidencia implements Serializable {
+    @Column(name =     "FECHA")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fecha;
+    @JoinColumn(name = "ID_EMPLEADO", referencedColumnName = "ID_EMPLEADO")
+    @ManyToOne
+    private Empleado idEmpleado;
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "INCIDENCIA")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator="personas_seq_gen")
+    @SequenceGenerator(name="personas_seq_gen", sequenceName="PERSONAS_SEQUENCE")
     private BigDecimal incidencia;
-    @Column(name = "FECHA")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
     @Column(name = "LONGITUD")
     private BigDecimal longitud;
     @Column(name = "LATITUD")
@@ -83,13 +91,21 @@ public class Incidencia implements Serializable {
     public void setIncidencia(BigDecimal incidencia) {
         this.incidencia = incidencia;
     }
-
+    
     public Date getFecha() {
         return fecha;
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Empleado getIdEmpleado() {
+        return idEmpleado;
+    }
+
+    public void setIdEmpleado(Empleado idEmpleado) {
+        this.idEmpleado = idEmpleado;
     }
 
     public BigDecimal getLongitud() {
@@ -175,10 +191,18 @@ public class Incidencia implements Serializable {
         }
         return true;
     }
-
+    
     @Override
     public String toString() {
-        return "org.inftel.pasos.entity.Incidencia[ incidencia=" + incidencia + " ]";
+        String info = "";
+        info += "FECHA: " + fecha;
+        info += "\nLONGITUD: " + longitud;
+        info += "\nLATITUD: " + latitud;
+        info += "\nALTITUD: " + altitud;
+        info += "\nTEMPERATURA: " + temperatura;
+        info += "\nNIVEL BATERIA: " + nivelBateria;
+        info += "\nNUMERO SATELITES: " + numSatelites;
+        return info;
     }
     
 }
