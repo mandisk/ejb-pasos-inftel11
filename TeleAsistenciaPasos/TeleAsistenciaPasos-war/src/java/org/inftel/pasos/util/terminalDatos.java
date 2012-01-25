@@ -99,7 +99,7 @@ public class terminalDatos {
         return rd;
     }
 
-    public void setIm(String rd) {
+    public void setRd(String rd) {
         this.rd = "&RD"+rd;
     }
 }
