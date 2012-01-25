@@ -41,7 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Usuario implements Serializable {
     @Lob
     @Column(name = "FOTO")
-    private Serializable foto;
+    private byte[] foto;
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -138,11 +138,11 @@ public class Usuario implements Serializable {
         return info;
     }
 
-    public Serializable getFoto() {
+    public byte[] getFoto() {
         return foto;
     }
 
-    public void setFoto(Serializable foto) {
+    public void setFoto(byte[] foto) {
         this.foto = foto;
     }
     
