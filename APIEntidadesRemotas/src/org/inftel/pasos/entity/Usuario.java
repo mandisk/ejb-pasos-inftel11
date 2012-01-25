@@ -39,6 +39,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
     @NamedQuery(name = "Usuario.findByImei", query = "SELECT u FROM Usuario u WHERE u.imei = :imei")})
 public class Usuario implements Serializable {
+    @Lob
+    @Column(name = "FOTO")
+    private Serializable foto;
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -50,9 +53,6 @@ public class Usuario implements Serializable {
     private BigDecimal idUsuario;
     @Column(name = "IMEI")
     private BigInteger imei;
-    @Lob
-    @Column(name = "FOTO")
-    private byte[] foto;
     @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
     @ManyToOne(cascade=CascadeType.PERSIST)
     private Persona idPersona;
@@ -82,14 +82,6 @@ public class Usuario implements Serializable {
 
     public void setImei(BigInteger imei) {
         this.imei = imei;
-    }
-
-    public byte[] getFoto() {
-        return foto;
-    }
-
-    public void setFoto(byte[] foto) {
-        this.foto = foto;
     }
 
     public Persona getIdPersona() {
@@ -144,6 +136,14 @@ public class Usuario implements Serializable {
         info += "IMEI: " + imei;
         info += "\n" + idPersona.toString();
         return info;
+    }
+
+    public Serializable getFoto() {
+        return foto;
+    }
+
+    public void setFoto(Serializable foto) {
+        this.foto = foto;
     }
     
 }
