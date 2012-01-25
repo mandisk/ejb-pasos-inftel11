@@ -130,7 +130,7 @@ public class Utilities {
 
     }
     
-    /* private static String md5(String clear) throws Exception {
+    public static String md5(String clear) throws Exception {
         MessageDigest md = MessageDigest.getInstance("MD5");
         byte[] b = md.digest(clear.getBytes());
 
@@ -145,7 +145,7 @@ public class Utilities {
             }
         }
         return h.toString();
-    }*/
+    }
      
     
 }

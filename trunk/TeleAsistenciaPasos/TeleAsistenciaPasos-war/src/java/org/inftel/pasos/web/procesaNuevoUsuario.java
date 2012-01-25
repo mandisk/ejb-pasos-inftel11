@@ -44,9 +44,7 @@ public class procesaNuevoUsuario extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        
-
+               
         /*String nextJSP = "/admin/user.jsp";
         UsuarioBean bean = new UsuarioBean();
         Usuario usuario = usuarioFacade.find(new BigDecimal("1021"));
