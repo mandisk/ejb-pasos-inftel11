@@ -26,6 +26,8 @@ public interface EmpleadoFacadeRemote {
     List<Empleado> findAll();
 
     List<Empleado> findRange(int[] range);
+    
+    Empleado findByUsuario(String usuario);
 
     int count();
     

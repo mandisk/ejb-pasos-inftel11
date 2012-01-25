@@ -6,11 +6,14 @@ package org.inftel.pasos.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.inftel.pasos.ejb.EmpleadoFacadeRemote;
+import org.inftel.pasos.util.Utilities;
 
 /**
  *
@@ -18,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
 public class ServletLogin extends HttpServlet {
+    @EJB
+    private EmpleadoFacadeRemote empleadoFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -30,18 +35,13 @@ public class ServletLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String usuario, pass, passCoded;
         try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletLogin</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletLogin at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-            response.sendRedirect("incidencias.jsp");
+            usuario = request.getParameter("usuario");
+            pass = request.getParameter("password");
+            passCoded = Utilities.getEncoded(pass);
+            empleadoFacade.findByUsuario(passCoded);
+            //response.sendRedirect("incidencias.jsp");
         } finally {            
             out.close();
         }
