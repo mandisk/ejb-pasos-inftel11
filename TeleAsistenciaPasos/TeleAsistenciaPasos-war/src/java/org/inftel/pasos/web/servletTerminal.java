@@ -40,6 +40,7 @@ public class servletTerminal extends HttpServlet {
             String pb;
             String la;
             String dt;
+            String rd;
             
             alarma = request.getParameter("alarma");
             ld = request.getParameter("ld");
@@ -49,6 +50,7 @@ public class servletTerminal extends HttpServlet {
             pb = request.getParameter("pb");
             la = request.getParameter("la");
             dt = request.getParameter("dt");
+            rd = request.getParameter("rd");
         
             terminalDatos terminaldatos = new terminalDatos();
             if(!alarma.isEmpty())
@@ -67,15 +69,17 @@ public class servletTerminal extends HttpServlet {
                 terminaldatos.setLa(la);
             if(!dt.isEmpty())
                 terminaldatos.setDt(dt);
+            if(!rd.isEmpty())
+                terminaldatos.setDt(rd);
             
             terminaldatos.terminalDatos();
             
             HttpSession sesion = request.getSession( true );
             sesion.setAttribute("dt", terminaldatos.getTrama());
             
-            RequestDispatcher rd;
-            rd = getServletContext().getRequestDispatcher("/Servlet");
-            rd.forward(request, response);
+            RequestDispatcher rdd;
+            rdd = getServletContext().getRequestDispatcher("/Servlet");
+            rdd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
