@@ -70,7 +70,7 @@ public class servletTerminal extends HttpServlet {
             if(!dt.isEmpty())
                 terminaldatos.setDt(dt);
             if(!rd.isEmpty())
-                terminaldatos.setDt(rd);
+                terminaldatos.setRd(rd);
             
             terminaldatos.terminalDatos();
             
