@@ -3,6 +3,8 @@ package org.inftel.pasos.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -74,6 +76,7 @@ public class Utilities {
 
     private static Usuario actualizaUsuario(Usuario usuario, FileItem campo) {
         String fieldname = campo.getFieldName();
+        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
             if (fieldname.equals("imei")) {
@@ -96,9 +99,13 @@ public class Utilities {
                 usuario.getIdPersona().setTelefono(new BigInteger(campo.getString()));
             } else if (fieldname.equals("email")) {
                 usuario.getIdPersona().setEmail(campo.getString());
+            } else if (fieldname.equals("fecnacimiento")) {
+                usuario.getIdPersona().setFecnacimiento(formatoDeFecha.parse(campo.getString()));
             }
         } catch (NullPointerException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Puntero Nulo: " + e.getMessage());
+        } catch (ParseException e) {
+            System.out.println("Error al parsear fecha: " + e.getMessage());
         }
 
         return usuario;

@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%--<p><img src="/ServletAvatar?id=1021&rnd=<%=System.currentTimeMillis() %>" /></p>--%>
+        <p><img style="width: 100px; height: 100px;" src="/ServletAvatar?id=1021&rnd=<%=System.currentTimeMillis() %>" /></p>
         <p>Purchase Orders:</p>
         <p> Total: ${usuarioBean.apellido1}</p>
         

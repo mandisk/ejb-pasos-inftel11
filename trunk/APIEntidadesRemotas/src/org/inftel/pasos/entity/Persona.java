@@ -210,6 +210,7 @@ public class Persona implements Serializable {
         info += "\nPROVINCIA: " + provincia;
         info += "\nCODIGO POSTAL: " + codpostal;
         info += "\nTELEFONO: " + telefono;
+        info += "\nFECHA DE NACIMIENTO: " + fecnacimiento;
         info += "\nEMAIL: " + email;
         return info;
     }

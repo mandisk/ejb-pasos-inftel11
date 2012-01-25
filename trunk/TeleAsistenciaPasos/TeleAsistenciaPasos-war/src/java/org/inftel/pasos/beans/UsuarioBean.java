@@ -12,6 +12,8 @@ import java.awt.image.BufferedImage;
  */
 public class UsuarioBean {
        
+    private int id;
+    
     private int imei;
     private String nombre;
     private String apellido1;
@@ -24,6 +26,14 @@ public class UsuarioBean {
     private String email;
     
     public UsuarioBean() {
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getApellido1() {

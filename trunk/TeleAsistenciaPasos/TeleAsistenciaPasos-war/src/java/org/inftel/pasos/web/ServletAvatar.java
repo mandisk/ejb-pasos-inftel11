@@ -43,16 +43,14 @@ public class ServletAvatar extends HttpServlet {
         
         BigDecimal identi = new BigDecimal(request.getParameter("id"));
         Usuario usuario = usuarioFacade.find(identi);
-        /*byte[] data = usuario.getFoto();  
+        byte[] data = usuario.getFoto();  
         InputStream in = new ByteArrayInputStream(data);
         BufferedImage image = ImageIO.read(in); 
 
         // Send back image
         ServletOutputStream sos = response.getOutputStream();
         JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(sos);
-        encoder.encode(image);*/
-        System.out.println("Doing doing doing: " + request.getParameter("id"));
-        //http://localhost:8080/TeleAsistenciaPasos-war/ServletAvatar?id=1021&rnd=23534690
+        encoder.encode(image);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

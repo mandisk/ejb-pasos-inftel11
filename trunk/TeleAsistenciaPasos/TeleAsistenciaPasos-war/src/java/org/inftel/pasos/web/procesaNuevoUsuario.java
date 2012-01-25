@@ -5,17 +5,14 @@
 package org.inftel.pasos.web;
 
 import java.io.IOException;
-import java.math.BigDecimal;
+import java.io.PrintWriter;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.beans.UsuarioBean;
 import org.inftel.pasos.ejb.UsuarioFacadeRemote;
-import org.inftel.pasos.entity.Persona;
 import org.inftel.pasos.entity.Usuario;
 import org.inftel.pasos.util.Utilities;
 
@@ -47,8 +44,10 @@ public class procesaNuevoUsuario extends HttpServlet {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        
+        
 
-        String nextJSP = "/admin/user.jsp";
+        /*String nextJSP = "/admin/user.jsp";
         UsuarioBean bean = new UsuarioBean();
         Usuario usuario = usuarioFacade.find(new BigDecimal("1021"));
         Persona persona = usuario.getIdPersona();
@@ -66,22 +65,22 @@ public class procesaNuevoUsuario extends HttpServlet {
         request.setAttribute("usuarioBean", bean);
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request, response);
-        /*response.setContentType("text/html;charset=UTF-8");
+        dispatcher.forward(request, response);*/
+        response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Servlet</title>");
+            out.println("<title>Creación Usuario</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Servlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Usuario creado.</h1>");
             out.println("</body>");
             out.println("</html>");
 
         } finally {
             out.close();
-        }*/
+        }
 
     }
 
