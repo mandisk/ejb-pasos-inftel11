@@ -10,9 +10,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de usuarios</title>
+        <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.8.17.custom.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="css/jquery-ui-1.8.17.custom.css" />
         <link rel="stylesheet" type="text/css" href="estilo.css" />
+        <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/minified/i18n/jquery-ui-i18n.min.js" type="text/javascript"></script>
     </head>
     <body>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.datepicker.setDefaults($.datepicker.regional['es']);
+                $("#datepicker").datepicker();
+            });
+        </script>
         <!-- Header -->
         <div id="header">
             <div class="shell">
@@ -73,6 +83,10 @@
                                 <p>
                                     <label>Tel&eacute;fono:</label>
                                     <input type="text" class="field size2" name="telefono" />
+                                </p>
+                                <p>
+                                    <label>Fecha de nacimiento:</label>
+                                    <input type="text" class="field size2" name="fecnacimiento" id="datepicker" />
                                 </p>
                                 <p>
                                     <label>E-mail:</label>
