@@ -15,6 +15,7 @@ import org.inftel.pasos.entity.Empleado;
  */
 @Stateless
 public class EmpleadoFacade extends AbstractFacade<Empleado> implements EmpleadoFacadeRemote {
+
     @PersistenceContext(unitName = "TeleAsistenciaPasos-ejbPU")
     private EntityManager em;
 
@@ -27,7 +28,7 @@ public class EmpleadoFacade extends AbstractFacade<Empleado> implements Empleado
     }
 
     public Empleado findByUsuario(String usuario) {
-        return (Empleado)em.createNamedQuery("findByUsuario").setParameter("usuario", usuario).getResultList().get(0);
+        return (Empleado) em.createQuery("SELECT e FROM Empleado e WHERE e.usuario = :user").
+                setParameter("user", usuario).getResultList().get(0);
     }
-    
 }

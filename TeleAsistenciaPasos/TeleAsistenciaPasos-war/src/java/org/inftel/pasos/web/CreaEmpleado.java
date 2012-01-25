@@ -5,8 +5,9 @@
 package org.inftel.pasos.web;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +19,11 @@ import org.inftel.pasos.util.Utilities;
 
 /**
  *
- * @author inftel
+ * @author aljiru
  */
-@WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
-public class ServletLogin extends HttpServlet {
+@WebServlet(name = "CreaEmpleado", urlPatterns = {"/CreaEmpleado"})
+public class CreaEmpleado extends HttpServlet {
+
     @EJB
     private EmpleadoFacadeRemote empleadoFacade;
 
@@ -34,36 +36,25 @@ public class ServletLogin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usuario, pass, passCoded;
-        String nextJSP = "/index.jsp";
-        
         try {
-            usuario = request.getParameter("usuario");
-            pass = request.getParameter("password");
-            passCoded = Utilities.md5(pass);
-            Empleado empBD = (Empleado) empleadoFacade.findByUsuario(usuario);
-            if (empBD.getContrasena().equals(passCoded)) {
-                nextJSP = "/listadoIncidencia";
-            }
+            Empleado emp = (Empleado) empleadoFacade.find(new BigDecimal(100));
+            String pass = Utilities.md5("1234");
+            emp.setContrasena(pass);
+            empleadoFacade.edit(emp);
         } catch (Exception e) {
-            System.out.println("Problema: " + e.getMessage());
-        }
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request, response);
-                
+            System.out.println("Hubo un error: " + e.getMessage());
+        } 
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/** 
+ * Handles the HTTP <code>GET</code> method.
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -76,7 +67,7 @@ public class ServletLogin extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -86,7 +77,7 @@ public class ServletLogin extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 }
