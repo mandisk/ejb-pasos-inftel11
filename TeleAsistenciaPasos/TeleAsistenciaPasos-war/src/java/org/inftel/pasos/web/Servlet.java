@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.inftel.pasos.beans.TramaBean;
 import org.inftel.pasos.ejb.IncidenciaFacadeRemote;
 import org.inftel.pasos.entity.Incidencia;
@@ -51,14 +52,16 @@ public class Servlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here    */
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Servlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Servlet at " + request.getContextPath() + "</h1>");
-
-            trama = request.getParameter("trama");
+            
+            HttpSession sesion = request.getSession(false);
+            
+            if ( sesion != null ) {
+                trama = (String) sesion.getAttribute("dt");
+                sesion.invalidate();
+            }
+            else
+                out.println("<P>No se puede recuperar la sesión</P>");
+            
             desmontarAU();
             request.setAttribute("t", t);
 
