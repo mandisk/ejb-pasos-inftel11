@@ -2,6 +2,10 @@ package org.inftel.pasos.util;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigInteger;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +14,8 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.inftel.pasos.entity.Persona;
+import org.inftel.pasos.entity.Usuario;
 
 /**
  * Métodos estáticos susceptibles de ser usados por varias clases.
@@ -24,9 +30,12 @@ public class Utilities {
      * datos del formulario.
      * @return byte Array de bytes que contiene
      */
-    public static byte[] formToBeanImage(HttpServletRequest req) {
+    public static Usuario formToBeanUser(HttpServletRequest req) {
 
         boolean isMultipart = ServletFileUpload.isMultipartContent(req);
+        Usuario usuario = new Usuario();
+        Persona persona = new Persona();
+        usuario.setIdPersona(persona);
 
         if (isMultipart) {
             // Patrón factoría para manejar ficheros procedentes de formularios
@@ -35,20 +44,24 @@ public class Utilities {
 
             try {
                 // Sólo cojo la primera imagen
-                FileItem item = (FileItem) upload.parseRequest(req).get(0);
-                InputStream is = item.getInputStream();
-                long sizeLong = item.getSize();
-                int size;
+                List<FileItem> items = upload.parseRequest(req);
+                for (FileItem item : items) {
+                    if (item.isFormField()) {
+                        usuario = actualizaUsuario(usuario, item);
+                    } else {
+                        InputStream is = item.getInputStream();
+                        long sizeLong = item.getSize();
+                        int size;
 
-                if (sizeLong < Integer.MAX_VALUE) {
-                    size = (int) sizeLong;
-                    byte[] buffer = new byte[size];
-                    is.read(buffer);
-                    return buffer;
+                        if (sizeLong < Integer.MAX_VALUE) {
+                            size = (int) sizeLong;
+                            byte[] buffer = new byte[size];
+                            is.read(buffer);
+                            usuario.setFoto(buffer);
+                        }
+                    }
                 }
 
-                // En caso de que la imagen sea demasiado grande no la recojo
-                return null;
             } catch (FileUploadException ex) {
                 Logger.getLogger(Utilities.class.getName()).log(Level.SEVERE, null, ex);
                 return null;
@@ -58,6 +71,43 @@ public class Utilities {
             }
         }
 
-        return null;
+        return usuario;
+    }
+
+    private static Usuario actualizaUsuario(Usuario usuario, FileItem campo) {
+        String fieldname = campo.getFieldName();
+        SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            if (fieldname.equals("imei")) {
+                usuario.setImei(new BigInteger(campo.getString()));
+            } else if (fieldname.equals("nombre")) {
+                usuario.getIdPersona().setNombre(campo.getString());
+            } else if (fieldname.equals("apellido1")) {
+                usuario.getIdPersona().setApellido1(campo.getString());
+            } else if (fieldname.equals("apellido2")) {
+                usuario.getIdPersona().setApellido2(campo.getString());
+            } else if (fieldname.equals("direccion")) {
+                usuario.getIdPersona().setDireccion(campo.getString());
+            } else if (fieldname.equals("localidad")) {
+                usuario.getIdPersona().setLocalidad(campo.getString());
+            } else if (fieldname.equals("provincia")) {
+                usuario.getIdPersona().setProvincia(campo.getString());
+            } else if (fieldname.equals("codPostal")) {
+                usuario.getIdPersona().setCodpostal(new BigInteger(campo.getString()));
+            } else if (fieldname.equals("telefono")) {
+                usuario.getIdPersona().setTelefono(new BigInteger(campo.getString()));
+            } else if (fieldname.equals("email")) {
+                usuario.getIdPersona().setEmail(campo.getString());
+            } else if (fieldname.equals("fecnacimiento")) {
+                usuario.getIdPersona().setFecnacimiento(formatoDeFecha.parse(campo.getString()));
+            }
+        } catch (NullPointerException e) {
+            System.out.println("Puntero Nulo: " + e.getMessage());
+        } catch (ParseException e) {
+            System.out.println("Error al parsear fecha: " + e.getMessage());
+        }
+
+        return usuario;
     }
 }
