@@ -4,7 +4,10 @@
     Author     : Manuel Valls
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="org.inftel.pasos.beans.IncidenciaBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="incidenciaBean" scope="request" class="IncidenciaBean"></jsp:useBean>
 <!DOCTYPE html>
 <html>
     <head>
@@ -74,7 +77,22 @@
                                                                 <th>Nivel de batería</th>
                                                                 <th>Acci&oacute;n</th>
 							</tr>
-							<tr>
+							<c:forEach var="order" items="${incidenciaBean.incidenciaCollection}">
+                                                            <tr>
+                                                                <td>${order.idUsuario.idPersona.nombre}</td> 
+                                                                <td>${order.idUsuario.idPersona.apellido1} 
+                                                                    ${order.idUsuario.idPersona.apellido2}</td> 
+                                                                <td>${order.idEmpleado.idPersona.nombre} 
+                                                                    ${order.idEmpleado.idPersona.apellido1}</td> 
+                                                                <td>${order.idTincidencia.descripcion}</td> 
+                                                                <td>${order.fecha}</td> 
+                                                                <td>${order.fecha}</td> 
+                                                                <td>${order.temperatura}ºC</td> 
+                                                                <td>${order.nivelBateria}%</td> 
+                                                                <td><a href="${pageContext.request.contextPath}/comUsuario?action=com&idUsuario=${order.idUsuario.idPersona.idPersona}">Atender Usuario</a></td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                        <tr>
                                                                 <td>Jose</td>
                                                                 <td>Rodríguez Rodríguez</td>
                                                                 <td>Juana Acosta</td>
