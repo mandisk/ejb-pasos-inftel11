@@ -3,6 +3,8 @@ package org.inftel.pasos.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -109,5 +111,22 @@ public class Utilities {
         }
 
         return usuario;
+    }
+    
+    public static String getEncoded(String texto) {
+         String output="";
+        try {
+           
+            byte[] textBytes = texto.getBytes();
+            MessageDigest md = MessageDigest.getInstance("md5");
+            md.update(textBytes);
+            byte[] codigo = md.digest();            
+            output = new String(codigo);
+            
+        } catch (NoSuchAlgorithmException ex) {
+            System.out.println("Palmó: " + ex.getMessage());
+        }
+        return output;
+
     }
 }

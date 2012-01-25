@@ -25,5 +25,9 @@ public class EmpleadoFacade extends AbstractFacade<Empleado> implements Empleado
     public EmpleadoFacade() {
         super(Empleado.class);
     }
+
+    public Empleado findByUsuario(String usuario) {
+        return (Empleado)em.createNamedQuery("findByUsuario").setParameter("usuario", usuario).getResultList().get(0);
+    }
     
 }

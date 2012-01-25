@@ -31,8 +31,13 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"),
-    @NamedQuery(name = "Empleado.findByIdEmpleado", query = "SELECT e FROM Empleado e WHERE e.idEmpleado = :idEmpleado")})
+    @NamedQuery(name = "Empleado.findByIdEmpleado", query = "SELECT e FROM Empleado e WHERE e.idEmpleado = :idEmpleado"),
+    @NamedQuery(name = "Empleado.findByUsuario", query = "SELECT e FROM Empleado e WHERE e.usuario = :usuario")})
 public class Empleado implements Serializable {
+
+    @Size(max = 100)
+    @Column(name = "USUARIO")
+    private String usuario;
     @Size(max = 100)
     @Column(name = "CONTRASENA")
     private String contrasena;
@@ -67,6 +72,14 @@ public class Empleado implements Serializable {
         this.idEmpleado = idEmpleado;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
     public Turno getIdTurno() {
         return idTurno;
     }
@@ -82,7 +95,7 @@ public class Empleado implements Serializable {
     public void setIdPersona(Persona idPersona) {
         this.idPersona = idPersona;
     }
-    
+
     public String getContrasena() {
         return contrasena;
     }
@@ -114,7 +127,8 @@ public class Empleado implements Serializable {
             return false;
         }
         Empleado other = (Empleado) object;
-        if ((this.idEmpleado == null && other.idEmpleado != null) || (this.idEmpleado != null && !this.idEmpleado.equals(other.idEmpleado))) {
+        if ((this.idEmpleado == null && other.idEmpleado != null) || (this.idEmpleado != null && !this.idEmpleado.
+                equals(other.idEmpleado))) {
             return false;
         }
         return true;
@@ -124,5 +138,4 @@ public class Empleado implements Serializable {
     public String toString() {
         return "org.inftel.pasos.entity.Empleado[ idEmpleado=" + idEmpleado + " ]";
     }
-    
 }
