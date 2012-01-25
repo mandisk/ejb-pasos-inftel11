@@ -91,14 +91,6 @@ public class Incidencia implements Serializable {
     public void setIncidencia(BigDecimal incidencia) {
         this.incidencia = incidencia;
     }
-    
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
 
     public Empleado getIdEmpleado() {
         return idEmpleado;
@@ -203,6 +195,14 @@ public class Incidencia implements Serializable {
         info += "\nNIVEL BATERIA: " + nivelBateria;
         info += "\nNUMERO SATELITES: " + numSatelites;
         return info;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
 }
