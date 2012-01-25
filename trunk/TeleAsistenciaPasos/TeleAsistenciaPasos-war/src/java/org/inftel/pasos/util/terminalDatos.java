@@ -18,9 +18,10 @@ public class terminalDatos {
     String pb="";
     String la="";
     String dt="";
+    String rd="";
 
     public void terminalDatos() {
-        this.trama="*$"+alarma+ld+lh+ln+lt+pb+la+dt+"#";
+        this.trama="*$"+alarma+ld+lh+ln+lt+pb+la+dt+rd+"#";
     }
     
     public String getTrama() {
@@ -92,5 +93,13 @@ public class terminalDatos {
 
     public void setPb(String pb) {
         this.pb = "&PB"+pb;
+    }
+    
+    public String getRd() {
+        return rd;
+    }
+
+    public void setIm(String rd) {
+        this.rd = "&RD"+rd;
     }
 }
