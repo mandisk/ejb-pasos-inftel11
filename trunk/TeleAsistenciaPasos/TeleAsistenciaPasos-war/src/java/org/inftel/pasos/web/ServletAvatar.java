@@ -4,28 +4,30 @@
  */
 package org.inftel.pasos.web;
 
+import com.sun.image.codec.jpeg.JPEGCodec;
+import com.sun.image.codec.jpeg.JPEGImageEncoder;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.beans.UsuarioBean;
 import org.inftel.pasos.ejb.UsuarioFacadeRemote;
-import org.inftel.pasos.entity.Persona;
 import org.inftel.pasos.entity.Usuario;
-import org.inftel.pasos.util.Utilities;
 
 /**
  *
  * @author aljiru
  */
-@WebServlet(name = "procesaNuevoUsuario", urlPatterns = {"/procesaNuevoUsuario"})
-public class procesaNuevoUsuario extends HttpServlet {
-
+@WebServlet(name = "ServletAvatar", urlPatterns = {"/ServletAvatar"})
+public class ServletAvatar extends HttpServlet {
     @EJB
     private UsuarioFacadeRemote usuarioFacade;
 
@@ -38,51 +40,19 @@ public class procesaNuevoUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        Usuario user = null;
-        try {
-            user = Utilities.formToBeanUser(request);
-            System.out.println(user.toString());
-            usuarioFacade.create(user);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
-        String nextJSP = "/admin/user.jsp";
-        UsuarioBean bean = new UsuarioBean();
-        Usuario usuario = usuarioFacade.find(new BigDecimal("1021"));
-        Persona persona = usuario.getIdPersona();
-        bean.setApellido1(persona.getApellido1());
-        bean.setApellido2(persona.getApellido2());
-        bean.setCodpostal(persona.getCodpostal().intValue());
-        bean.setDireccion(persona.getDireccion());
-        bean.setEmail(persona.getEmail());
         
-        bean.setImei(usuario.getImei().intValue());
-        bean.setLocalidad(persona.getLocalidad());
-        bean.setNombre(persona.getNombre());
-        bean.setProvincia(persona.getProvincia());
-        bean.setTelefono(persona.getTelefono().intValue());
-        request.setAttribute("usuarioBean", bean);
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request, response);
-        /*response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Servlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Servlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        BigDecimal identi = new BigDecimal(request.getParameter("id"));
+        Usuario usuario = usuarioFacade.find(identi);
+        /*byte[] data = usuario.getFoto();  
+        InputStream in = new ByteArrayInputStream(data);
+        BufferedImage image = ImageIO.read(in); 
 
-        } finally {
-            out.close();
-        }*/
-
+        // Send back image
+        ServletOutputStream sos = response.getOutputStream();
+        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(sos);
+        encoder.encode(image);*/
+        System.out.println("Doing doing doing: " + request.getParameter("id"));
+        //http://localhost:8080/TeleAsistenciaPasos-war/ServletAvatar?id=1021&rnd=23534690
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

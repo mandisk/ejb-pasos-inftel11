@@ -4,13 +4,14 @@
  */
 package org.inftel.pasos.beans;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author aljiru
  */
 public class UsuarioBean {
-    
-    private String foto;    
+       
     private int imei;
     private String nombre;
     private String apellido1;
@@ -63,14 +64,6 @@ public class UsuarioBean {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
     }
 
     public int getImei() {

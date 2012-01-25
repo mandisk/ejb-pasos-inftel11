@@ -94,6 +94,8 @@ public class Utilities {
                 usuario.getIdPersona().setCodpostal(new BigInteger(campo.getString()));
             } else if (fieldname.equals("telefono")) {
                 usuario.getIdPersona().setTelefono(new BigInteger(campo.getString()));
+            } else if (fieldname.equals("email")) {
+                usuario.getIdPersona().setEmail(campo.getString());
             }
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
