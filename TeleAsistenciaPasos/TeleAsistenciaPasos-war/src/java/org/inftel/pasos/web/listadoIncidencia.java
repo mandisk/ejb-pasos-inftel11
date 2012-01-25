@@ -6,11 +6,15 @@ package org.inftel.pasos.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.inftel.pasos.beans.IncidenciaBean;
+import org.inftel.pasos.ejb.IncidenciaFacadeRemote;
 
 /**
  *
@@ -18,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "listadoIncidencia", urlPatterns = {"/listadoIncidencia"})
 public class listadoIncidencia extends HttpServlet {
+    @EJB
+    private IncidenciaFacadeRemote incidenciaFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,22 +34,9 @@ public class listadoIncidencia extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet listadoIncidencia</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet listadoIncidencia at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-        } finally {            
-            out.close();
-        }
+        IncidenciaBean incidenciaBean = new IncidenciaBean();
+        List incidencias = incidenciaFacade.findAllIncidencias();
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
