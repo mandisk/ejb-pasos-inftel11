@@ -28,5 +28,7 @@ public interface IncidenciaFacadeRemote {
     List<Incidencia> findRange(int[] range);
 
     int count();
+
+    public java.util.List findAllIncidencias();
     
 }
