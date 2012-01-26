@@ -39,6 +39,7 @@
                 </div>
                 <!-- End Form Buttons -->
             </form>
+            <a class="newuser" href="/TeleAsistenciaPasos-war/registro.jsp">¿Nuevo usuario? Reg&iacute;strate</a>
         </div>
         <!-- End Log in -->
     </body>

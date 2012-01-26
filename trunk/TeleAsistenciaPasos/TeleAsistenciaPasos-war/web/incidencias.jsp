@@ -89,7 +89,7 @@
                                                                 <td>${order.fecha}</td> 
                                                                 <td>${order.temperatura}ºC</td> 
                                                                 <td>${order.nivelBateria}%</td> 
-                                                                <td><a href="${pageContext.request.contextPath}/comUsuario?action=com&idUsuario=${order.idUsuario.idPersona.idPersona}">Atender Usuario</a></td>
+                                                                <td><a href="${pageContext.request.contextPath}/comUsuario?action=com&idPersona=${order.idUsuario.idUsuario}">Atender Usuario</a></td>
                                                             </tr>
                                                         </c:forEach>
                                                         <tr>
@@ -170,7 +170,6 @@
 						
 					</div>
 					<!-- Table -->
-					
 				</div>
 				<!-- End Box -->
                                 <div class="cl">&nbsp;</div>	

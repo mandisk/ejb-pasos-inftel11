@@ -25,5 +25,8 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     public UsuarioFacade() {
         super(Usuario.class);
     }
-    
+    public Usuario findById(Integer id) {
+        return (Usuario) em.createQuery("SELECT u FROM Usuario u WHERE u.idUsuario = :id").
+                setParameter("id", id).getResultList().get(0);
+    }
 }
