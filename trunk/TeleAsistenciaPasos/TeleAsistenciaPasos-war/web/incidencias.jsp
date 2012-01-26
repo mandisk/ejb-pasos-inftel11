@@ -92,62 +92,6 @@
                                                                 <td><a href="${pageContext.request.contextPath}/comUsuario?action=com&idPersona=${order.idUsuario.idUsuario}">Atender Usuario</a></td>
                                                             </tr>
                                                         </c:forEach>
-                                                        <tr>
-                                                                <td>Jose</td>
-                                                                <td>Rodríguez Rodríguez</td>
-                                                                <td>Juana Acosta</td>
-                                                                <td>Accidente</td>
-                                                                <td>17/01/2012</td>
-                                                                <td>17:15</td>
-                                                                <td>7ºC</td>
-                                                                <td>50%</td>
-                                                                <td><a href="comuser.jsp">Atender Usuario</a></td>
-                                                        </tr>
-                                                         <tr class="odd">
-                                                                <td>Juana</td>
-                                                                <td>Rodríguez Rodríguez</td>
-                                                                <td>Jose Acosta</td>
-                                                                <td>Accidente</td>
-                                                                <td>18/01/2012</td>
-                                                                <td>13:15</td>
-                                                                <td>8ºC</td>
-                                                                <td>50%</td>
-                                                                <td><a href="#">Atender Usuario</a></td>
-                                                        </tr>
-                                                         <tr>
-                                                                <td>Ana</td>
-                                                                <td>García Rodríguez</td>
-                                                                <td>Antonio Acosta</td>
-                                                                <td>Accidente</td>
-                                                                <td>19/01/2012</td>
-                                                                <td>17:35</td>
-                                                                <td>9ºC</td>
-                                                                <td>80%</td>
-                                                                <td><a href="#">Atender Usuario</a></td>
-                                                        </tr>
-                                                         <tr class="odd">
-                                                                <td>Rodrigo</td>
-                                                                <td>Rodríguez Rodríguez</td>
-                                                                <td>Felipe Acosta</td>
-                                                                <td>Accidente</td>
-                                                                <td>12/01/2012</td>
-                                                                <td>11:15</td>
-                                                                <td>10ºC</td>
-                                                                <td>50%</td>
-                                                                <td><a href="#">Atender Usuario</a></td>
-                                                        </tr>
-                                                         <tr>
-                                                                <td>Francisco</td>
-                                                                <td>Garcia Rodríguez</td>
-                                                                <td>Juan Acosta</td>
-                                                                <td>Accidente</td>
-                                                                <td>17/12/2011</td>
-                                                                <td>12:15</td>
-                                                                <td>9ºC</td>
-                                                                <td>50%</td>
-                                                                <td><a href="#">Atender Usuario</a></td>
-                                                                </tr>
-            
 						</table>
 						
 						
