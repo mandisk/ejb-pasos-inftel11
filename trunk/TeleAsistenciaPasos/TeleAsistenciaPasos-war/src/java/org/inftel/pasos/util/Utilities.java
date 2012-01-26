@@ -113,23 +113,6 @@ public class Utilities {
         return usuario;
     }
     
-    public static String getEncoded(String texto) {
-         String output="";
-        try {
-           
-            byte[] textBytes = texto.getBytes();
-            MessageDigest md = MessageDigest.getInstance("md5");
-            md.update(textBytes);
-            byte[] codigo = md.digest();            
-            output = new String(codigo);
-            
-        } catch (NoSuchAlgorithmException ex) {
-            System.out.println("Palmó: " + ex.getMessage());
-        }
-        return output;
-
-    }
-    
     public static String md5(String clear) throws Exception {
         MessageDigest md = MessageDigest.getInstance("MD5");
         byte[] b = md.digest(clear.getBytes());

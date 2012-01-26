@@ -2,28 +2,32 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.inftel.pasos.web;
+package org.inftel.pasos.web.mensajeria;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.EmpleadoFacadeRemote;
-import org.inftel.pasos.entity.Empleado;
-import org.inftel.pasos.util.Utilities;
+import org.inftel.pasos.ejb.MensajeFacadeRemote;
+import org.inftel.pasos.entity.Mensaje;
 
 /**
  *
- * @author inftel
+ * @author aljiru
  */
-@WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
-public class ServletLogin extends HttpServlet {
+@WebServlet(name = "ServletMensajeria", urlPatterns = {"/ServletMensajeria"})
+public class ServletMensajeriaTeleasistencia extends HttpServlet {
+
     @EJB
-    private EmpleadoFacadeRemote empleadoFacade;
+    private MensajeFacadeRemote mensajeFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,24 +38,22 @@ public class ServletLogin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usuario, pass, passCoded;
-        String nextJSP = "/index.jsp";
-        
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         try {
-            usuario = request.getParameter("usuario");
-            pass = request.getParameter("password");
-            passCoded = Utilities.md5(pass);
-            Empleado empBD = (Empleado) empleadoFacade.findByUsuario(usuario);
-            if (empBD.getContrasena().equals(passCoded)) {
-                nextJSP = "/listadoIncidencia";
-            }
-        } catch (Exception e) {
-            System.out.println("Problema: " + e.getMessage());
+            Mensaje mensaje = new Mensaje();
+            mensaje.setIdSesion(new BigInteger(request.getParameter("sesion")));
+            mensaje.setTeleasistencia(new BigInteger(request.getParameter("user")));
+            mensaje.setTexto(request.getParameter("msg"));
+            mensajeFacade.create(mensaje);
+            
+            Mensaje nMens = mensajeFacade.findByData(request.getParameter("sesion"), request.getParameter("user"), request.getParameter("msg"));
+            out.println(nMens.getIdMensaje());
+        } catch (Exception ex) {
+            Logger.getLogger(ServletMensajeriaTeleasistencia.class.getName()).log(Level.SEVERE, "Fallo al insertar mensaje", ex);
         }
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request, response);
-                                
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -88,5 +90,5 @@ public class ServletLogin extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }// </editor-fold>    
 }
