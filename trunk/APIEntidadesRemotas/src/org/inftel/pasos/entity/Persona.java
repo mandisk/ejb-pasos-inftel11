@@ -62,7 +62,7 @@ public class Persona implements Serializable {
     @NotNull
     @Column(name = "ID_PERSONA")
     @GeneratedValue(strategy = GenerationType.AUTO, generator="personas_seq_gen")
-    @SequenceGenerator(name="personas_seq_gen", sequenceName="PERSONAS_SEQUENCE")
+    @SequenceGenerator(name="personas_seq_gen", sequenceName="PERSONAS_SEQUENCE", allocationSize=1)
     private BigDecimal idPersona;
     @Column(name = "TELEFONO")
     private BigInteger telefono;

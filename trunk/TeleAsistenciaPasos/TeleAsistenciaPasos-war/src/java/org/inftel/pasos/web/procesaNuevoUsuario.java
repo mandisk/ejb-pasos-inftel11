@@ -44,7 +44,7 @@ public class procesaNuevoUsuario extends HttpServlet {
             System.out.println(user.toString());
             usuarioFacade.create(user);
         } catch (Exception e) {
-            Logger.getLogger(procesaNuevoUsuario.class.getName()).log(Level.SEVERE, "Fallo al crear usuario");
+            Logger.getLogger(procesaNuevoUsuario.class.getName()).log(Level.SEVERE, "Fallo al crear usuario", e);
         }
         
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");

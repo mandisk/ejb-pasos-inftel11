@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.ejb.EJB;
@@ -23,7 +25,6 @@ import javax.servlet.http.HttpSession;
 import org.inftel.pasos.beans.TramaBean;
 import org.inftel.pasos.ejb.IncidenciaFacadeRemote;
 import org.inftel.pasos.entity.Incidencia;
-import org.inftel.pasos.entity.Usuario;
 
 /**
  *
@@ -48,8 +49,6 @@ public class Servlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         try {
             /* TODO output your page here    */
             
@@ -59,8 +58,6 @@ public class Servlet extends HttpServlet {
                 trama = (String) sesion.getAttribute("dt");
                 sesion.invalidate();
             }
-            else
-                out.println("<P>No se puede recuperar la sesión</P>");
             
             desmontarAU();
             request.setAttribute("t", t);
@@ -75,13 +72,11 @@ public class Servlet extends HttpServlet {
             incidencia.setTemperatura((double)t.getTemp());
             
             incidenciaFacade.create(incidencia);
-            out.println("</body>");
-            out.println("</html>");
 
             RequestDispatcher d = getServletContext().getRequestDispatcher("/trama/prueba.jsp");
             d.forward(request, response);
-        } finally {
-            out.close();
+        } catch (Exception e) {
+            Logger.getLogger(procesaNuevoUsuario.class.getName()).log(Level.SEVERE, "Fallo al crear usuario", e);
         }
     }
 
