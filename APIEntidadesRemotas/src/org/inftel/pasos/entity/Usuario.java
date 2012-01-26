@@ -49,7 +49,7 @@ public class Usuario implements Serializable {
     @NotNull
     @Column(name = "ID_USUARIO")
     @GeneratedValue(strategy = GenerationType.AUTO, generator="personas_seq_gen")
-    @SequenceGenerator(name="personas_seq_gen", sequenceName="PERSONAS_SEQUENCE")
+    @SequenceGenerator(name="personas_seq_gen", sequenceName="PERSONAS_SEQUENCE", allocationSize=1)
     private BigDecimal idUsuario;
     @Column(name = "IMEI")
     private BigInteger imei;
