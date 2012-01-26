@@ -6,11 +6,18 @@ package org.inftel.pasos.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.inftel.pasos.beans.PersonaBean;
+import org.inftel.pasos.ejb.PersonaFacadeRemote;
+import org.inftel.pasos.ejb.UsuarioFacadeRemote;
+import org.inftel.pasos.entity.Persona;
+import org.inftel.pasos.entity.Usuario;
 
 /**
  *
@@ -18,6 +25,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "comUsuario", urlPatterns = {"/comUsuario"})
 public class comUsuario extends HttpServlet {
+    @EJB
+    private UsuarioFacadeRemote usuarioFacade;
+    @EJB
+    private PersonaFacadeRemote personaFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -28,22 +39,18 @@ public class comUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet comUsuario</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet comUsuario at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-             */
-        } finally {            
-            out.close();
-        }
+      String nextdir="/comuser.jsp";
+      String action = request.getParameter("action");
+      if (action.equals("com")) {
+      PersonaBean personaBean = new PersonaBean();
+      Integer personaId = Integer.parseInt(request.getParameter("idPersona"));
+      Usuario usuario = usuarioFacade.findById(personaId);
+      personaBean.setUsuario(usuario);
+      
+      request.setAttribute("personaBean", personaBean);
+      }
+      RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextdir);
+      dispatcher.forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
