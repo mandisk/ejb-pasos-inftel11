@@ -2,7 +2,16 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="APIEntidadesRemotasPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>org.inftel.pasos.entity.Disponibilidad</class><class>org.inftel.pasos.entity.Empleado</class><class>org.inftel.pasos.entity.Familiar</class><class>org.inftel.pasos.entity.Incidencia</class><class>org.inftel.pasos.entity.Persona</class><class>org.inftel.pasos.entity.TipoIncidencia</class><class>org.inftel.pasos.entity.Turno</class><class>org.inftel.pasos.entity.Usuario</class><properties>
+    <class>org.inftel.pasos.entity.Disponibilidad</class>
+    <class>org.inftel.pasos.entity.Empleado</class>
+    <class>org.inftel.pasos.entity.Familiar</class>
+    <class>org.inftel.pasos.entity.Incidencia</class>
+    <class>org.inftel.pasos.entity.Persona</class>
+    <class>org.inftel.pasos.entity.TipoIncidencia</class>
+    <class>org.inftel.pasos.entity.Turno</class>
+    <class>org.inftel.pasos.entity.Usuario</class>
+    <class>org.inftel.pasos.entity.Mensaje</class>
+    <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@olimpia.lcc.uma.es:1521:edgar"/>
       <property name="javax.persistence.jdbc.password" value="inftel"/>
       <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>

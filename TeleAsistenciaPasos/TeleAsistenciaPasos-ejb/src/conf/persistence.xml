@@ -11,6 +11,7 @@
     <class>org.inftel.pasos.entity.TipoIncidencia</class>
     <class>org.inftel.pasos.entity.Turno</class>
     <class>org.inftel.pasos.entity.Usuario</class>
+    <class>org.inftel.pasos.entity.Mensaje</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

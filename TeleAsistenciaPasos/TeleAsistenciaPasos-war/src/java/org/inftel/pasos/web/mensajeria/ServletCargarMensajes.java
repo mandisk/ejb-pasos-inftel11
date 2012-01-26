@@ -2,28 +2,32 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.inftel.pasos.web;
+package org.inftel.pasos.web.mensajeria;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.EmpleadoFacadeRemote;
-import org.inftel.pasos.entity.Empleado;
-import org.inftel.pasos.util.Utilities;
+import org.inftel.pasos.ejb.MensajeFacadeRemote;
+import org.inftel.pasos.entity.Mensaje;
 
 /**
  *
- * @author inftel
+ * @author aljiru
  */
-@WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
-public class ServletLogin extends HttpServlet {
+@WebServlet(name = "ServletCargarMensajes", urlPatterns = {"/ServletCargarMensajes"})
+public class ServletCargarMensajes extends HttpServlet {
+
     @EJB
-    private EmpleadoFacadeRemote empleadoFacade;
+    private MensajeFacadeRemote mensajeFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -34,24 +38,34 @@ public class ServletLogin extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usuario, pass, passCoded;
-        String nextJSP = "/index.jsp";
-        
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
         try {
-            usuario = request.getParameter("usuario");
-            pass = request.getParameter("password");
-            passCoded = Utilities.md5(pass);
-            Empleado empBD = (Empleado) empleadoFacade.findByUsuario(usuario);
-            if (empBD.getContrasena().equals(passCoded)) {
-                nextJSP = "/listadoIncidencia";
+            String cadena = "";
+            BigDecimal top = new BigDecimal(0);
+            String usuario = request.getParameter("tel");            
+            if (usuario.equals("0")) {
+                cadena = "Usuario: ";
+            } else {
+                cadena = "Teleoperadora: ";
             }
-        } catch (Exception e) {
-            System.out.println("Problema: " + e.getMessage());
+            List<Mensaje> lMensaje = mensajeFacade.findHigher(request.getParameter("ult"), request.getParameter("ses"), usuario);
+            if (!lMensaje.isEmpty()) {
+                for (Mensaje men : lMensaje) {
+                    out.println("<div>" + cadena + men.getTexto() + "</div>");
+                    top = men.getIdMensaje();
+                }
+
+                out.println("<div style='display: none;' class='maroto'>" + top + "</div>");
+            } else {                
+                out.println("");
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(ServletCargarMensajes.class.getName()).log(Level.SEVERE, "Fallo al cargar mensajes", ex);
+        } finally {
+            out.close();
         }
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request, response);
-                                
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
