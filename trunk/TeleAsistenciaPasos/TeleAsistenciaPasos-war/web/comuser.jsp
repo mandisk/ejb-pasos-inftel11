@@ -4,12 +4,15 @@
     Author     : Manuel Valls
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="org.inftel.pasos.beans.PersonaBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="personaBean" scope="request" class="PersonaBean"></jsp:useBean>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Incidencias</title>
+        <title>Incidencia del usuario</title>
         <link rel="stylesheet" type="text/css" href="estilo.css" />
     </head>
     <body>
@@ -66,20 +69,20 @@
                                             <img src="images/foto.jpg"  /> 
                                             </div>
                                             <table cellspacing="6">
-                                                    <td><b>Nombre:</b> Juan</td> 
-                                                    <td><b>Apellidos:</b> L&oacute;pez Peñalver</td>
+                                                    <td><b>Nombre:</b> ${personaBean.usuario.idPersona.nombre}</td> 
+                                                    <td><b>Apellidos:</b> ${personaBean.usuario.idPersona.apellido1} ${personaBean.usuario.idPersona.apellido2}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>Dirección:</b> Calle Larios</td>
-                                                    <td><b>Localidad:</b> Malaga</td>
+                                                    <td><b>Dirección:</b> ${personaBean.usuario.idPersona.direccion}</td>
+                                                    <td><b>Localidad:</b> ${personaBean.usuario.idPersona.localidad}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>Provincia:</b> Málaga</td>
-                                                    <td><b>Cod. Postal:</b> 29014</td>
+                                                    <td><b>Provincia:</b> ${personaBean.usuario.idPersona.provincia}</td>
+                                                    <td><b>Cod. Postal:</b> ${personaBean.usuario.idPersona.codpostal}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><b>Fecha de Nacimiento:</b> 14/01/1970</td>
-                                                    <td><b>Email:</b> elmejor@gmail.com</td>
+                                                    <td><b>Fecha de Nacimiento:</b> ${personaBean.usuario.idPersona.fecnacimiento}</td>
+                                                    <td><b>Email:</b> ${personaBean.usuario.idPersona.email}</td>
                                                 </tr>
                                             </table>
                                         </div>
