@@ -5,8 +5,10 @@
 package org.inftel.pasos.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,43 +44,11 @@ public class procesaNuevoUsuario extends HttpServlet {
             System.out.println(user.toString());
             usuarioFacade.create(user);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            Logger.getLogger(procesaNuevoUsuario.class.getName()).log(Level.SEVERE, "Fallo al crear usuario");
         }
-               
-        /*String nextJSP = "/admin/user.jsp";
-        UsuarioBean bean = new UsuarioBean();
-        Usuario usuario = usuarioFacade.find(new BigDecimal("1021"));
-        Persona persona = usuario.getIdPersona();
-        bean.setApellido1(persona.getApellido1());
-        bean.setApellido2(persona.getApellido2());
-        bean.setCodpostal(persona.getCodpostal().intValue());
-        bean.setDireccion(persona.getDireccion());
-        bean.setEmail(persona.getEmail());
         
-        bean.setImei(usuario.getImei().intValue());
-        bean.setLocalidad(persona.getLocalidad());
-        bean.setNombre(persona.getNombre());
-        bean.setProvincia(persona.getProvincia());
-        bean.setTelefono(persona.getTelefono().intValue());
-        request.setAttribute("usuarioBean", bean);
-        
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
-        dispatcher.forward(request, response);*/
-        response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        try {
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Creación Usuario</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Usuario creado.</h1>");
-            out.println("</body>");
-            out.println("</html>");
-
-        } finally {
-            out.close();
-        }
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
 
     }
 
