@@ -26,6 +26,8 @@ public interface UsuarioFacadeRemote {
     List<Usuario> findAll();
 
     List<Usuario> findRange(int[] range);
+    
+    Usuario findById(Integer id);
 
     int count();
     
