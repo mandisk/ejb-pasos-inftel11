@@ -4,6 +4,7 @@
  */
 package org.inftel.pasos.ejb;
 
+import java.math.BigDecimal;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,6 +28,6 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
     }
     public Usuario findById(Integer id) {
         return (Usuario) em.createQuery("SELECT u FROM Usuario u WHERE u.idUsuario = :id").
-                setParameter("id", id).getResultList().get(0);
+                setParameter("id", new BigDecimal(id)).getResultList().get(0);
     }
 }
