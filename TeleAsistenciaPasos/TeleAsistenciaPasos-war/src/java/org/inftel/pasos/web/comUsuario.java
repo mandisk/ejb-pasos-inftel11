@@ -25,6 +25,7 @@ import org.inftel.pasos.entity.Usuario;
  */
 @WebServlet(name = "comUsuario", urlPatterns = {"/comUsuario"})
 public class comUsuario extends HttpServlet {
+
     @EJB
     private UsuarioFacadeRemote usuarioFacade;
     @EJB
@@ -39,18 +40,18 @@ public class comUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String nextdir="/comuser.jsp";
-      String action = request.getParameter("action");
-      if (action.equals("com")) {
-      PersonaBean personaBean = new PersonaBean();
-      Integer personaId = Integer.parseInt(request.getParameter("idPersona"));
-      Usuario usuario = usuarioFacade.findById(personaId);
-      personaBean.setUsuario(usuario);
-      
-      request.setAttribute("personaBean", personaBean);
-      }
-      RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextdir);
-      dispatcher.forward(request,response);
+        String nextdir = "/comuser.jsp";
+        String action = request.getParameter("action");
+        if (action.equals("com")) {
+            PersonaBean personaBean = new PersonaBean();
+            Integer personaId = Integer.parseInt(request.getParameter("idPersona"));
+            Usuario usuario = usuarioFacade.findById(personaId);
+            personaBean.setUsuario(usuario);
+
+            request.setAttribute("personaBean", personaBean);
+        }
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextdir);
+        dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
