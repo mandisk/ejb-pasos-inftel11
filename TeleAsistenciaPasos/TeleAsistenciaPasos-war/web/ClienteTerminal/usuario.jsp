@@ -37,7 +37,6 @@
                     <p>Temperature: <p><INPUT TYPE="TEXT" NAME="dt" SIZE="20"></p></p>
                     <p>Imei: <p><INPUT TYPE="TEXT" NAME="rd" SIZE="20"></p></p>
                     <select name="cliente" id="cliente">
-                        <option value="1078">Manolo</option>
                     </select>
                     <br></br>
                     <p><INPUT TYPE="SUBMIT" VALUE="Introducir Datos"></p>
@@ -45,14 +44,14 @@
         </div>
         <script type="text/javascript">
             
-            /*$(document).ready(function() {
+            $(document).ready(function() {
                 $.ajax({
                     url: "../ServletCargaSelect",
                     success: function(data){
                         $("#cliente").html(data);                                
                     }
                 });
-            });*/
+            });
 
         </script>
     </body>
