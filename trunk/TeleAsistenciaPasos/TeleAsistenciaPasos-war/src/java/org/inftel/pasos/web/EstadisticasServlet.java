@@ -49,10 +49,7 @@ public class EstadisticasServlet extends HttpServlet {
 
     protected void calculaIncidencias() {
         Collection<Incidencia> incidencias = incidenciaFacade.findAll();
-        System.out.println(incidencias.size());
         for (Incidencia incidencia : incidencias) {
-            Logger.getLogger(procesaNuevoUsuario.class.getName()).log(Level.SEVERE, String.valueOf(incidencia.
-                    getFecha().getMonth()));
             if (incidencia.getFecha().getMonth() == 0) {
                 enero++;
             } else if (incidencia.getFecha().getMonth() == 1) {
