@@ -5,7 +5,6 @@
 package org.inftel.pasos.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
@@ -24,7 +23,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.inftel.pasos.beans.TramaBean;
 import org.inftel.pasos.ejb.IncidenciaFacadeRemote;
+import org.inftel.pasos.ejb.TipoIncidenciaFacadeRemote;
+import org.inftel.pasos.ejb.UsuarioFacadeRemote;
 import org.inftel.pasos.entity.Incidencia;
+import org.inftel.pasos.entity.TipoIncidencia;
+import org.inftel.pasos.entity.Usuario;
 
 /**
  *
@@ -33,9 +36,14 @@ import org.inftel.pasos.entity.Incidencia;
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
 public class Servlet extends HttpServlet {
     @EJB
+    private TipoIncidenciaFacadeRemote tipoIncidenciaFacade;
+    @EJB
+    private UsuarioFacadeRemote usuarioFacade;
+    @EJB
     private IncidenciaFacadeRemote incidenciaFacade;
 
     private String trama;
+    private String cliente;
     private String tramaPE;
     Vector<Integer> a = new Vector<Integer>();
     TramaBean t = new TramaBean();
@@ -56,6 +64,7 @@ public class Servlet extends HttpServlet {
             
             if ( sesion != null ) {
                 trama = (String) sesion.getAttribute("dt");
+                cliente = (String) sesion.getAttribute("sesCli");
                 sesion.invalidate();
             }
             
@@ -65,15 +74,25 @@ public class Servlet extends HttpServlet {
             Incidencia incidencia= new Incidencia();
             incidencia.setAltitud(new BigDecimal(t.getAlt()));
             incidencia.setFecha(new Date(t.getDate()));
-            incidencia.setIdTincidencia(null); // --------->>>>>> ?????????
+            
+            TipoIncidencia ti = tipoIncidenciaFacade.find(new BigDecimal("2222"));
+            
+            incidencia.setIdTincidencia(ti);
             incidencia.setLatitud(new BigDecimal(t.getLat()));
             incidencia.setLongitud(new BigDecimal(t.getLon()));
             incidencia.setNivelBateria(new BigInteger(Integer.toString(t.getPb())));
             incidencia.setTemperatura((double)t.getTemp());
             
-            incidenciaFacade.create(incidencia);
+            Usuario us = usuarioFacade.find(new BigDecimal(cliente));
+            
+            incidencia.setIdUsuario(us);
+            
+            incidenciaFacade.create(incidencia);            
 
-            RequestDispatcher d = getServletContext().getRequestDispatcher("/trama/prueba.jsp");
+            RequestDispatcher d = getServletContext().getRequestDispatcher("/mensajes/chatCliente.jsp");
+            
+            request.setAttribute("ses", cliente);
+            
             d.forward(request, response);
         } catch (Exception e) {
             Logger.getLogger(procesaNuevoUsuario.class.getName()).log(Level.SEVERE, "Fallo al crear usuario", e);

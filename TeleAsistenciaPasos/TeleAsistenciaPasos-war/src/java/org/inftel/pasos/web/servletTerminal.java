@@ -76,6 +76,7 @@ public class servletTerminal extends HttpServlet {
             
             HttpSession sesion = request.getSession( true );
             sesion.setAttribute("dt", terminaldatos.getTrama());
+            sesion.setAttribute("sesCli", request.getParameter("cliente"));
             
             RequestDispatcher rdd;
             rdd = getServletContext().getRequestDispatcher("/Servlet");
