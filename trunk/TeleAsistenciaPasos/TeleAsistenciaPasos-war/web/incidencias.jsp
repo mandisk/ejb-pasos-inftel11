@@ -148,7 +148,7 @@
                         data: "ult=" + ultimo,
                         success: function(data){
                             if (data.length > 5) {
-                                $("#tBody").append(data);
+                                $("#tBody").prepend(data);
                                 ultimo = $(".nuevo").html();
                                 $(".nuevo").removeClass("nuevo");
                             }

@@ -41,8 +41,8 @@ public class listadoIncidencia extends HttpServlet {
         IncidenciaBean incidenciaBean = new IncidenciaBean();
         Collection<Incidencia> incidencias = incidenciaFacade.findAll();
         incidenciaBean.setIncidenciaCollection(incidencias);
-        while (incidencias.iterator().hasNext()) {
-            incidenciaBean.setUltima(incidencias.iterator().next().getIncidencia().intValue());
+        for (Incidencia in : incidencias) {
+            incidenciaBean.setUltima(in.getIncidencia().intValue());           
         }
         request.setAttribute("incidenciaBean", incidenciaBean);
         //List incidencias = incidenciaFacade.findAllIncidencias();

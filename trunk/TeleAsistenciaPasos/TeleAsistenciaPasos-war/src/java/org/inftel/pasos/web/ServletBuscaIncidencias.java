@@ -47,7 +47,7 @@ public class ServletBuscaIncidencias extends HttpServlet {
             List<Incidencia> lIncidencia = incidenciaFacade.findHigher(request.getParameter("ult"));
             if (!lIncidencia.isEmpty()) {
                 for (Incidencia in : lIncidencia) {
-                    out.println("<tr>");
+                    out.println("<tr class='alert'>");
                     out.println("<td>" + in.getIdUsuario().getIdPersona().getNombre() + "</td>");
                     out.println("<td>" + in.getIdUsuario().getIdPersona().getApellido1());
                     out.println(in.getIdUsuario().getIdPersona().getApellido2() + "</td>");
@@ -74,7 +74,7 @@ public class ServletBuscaIncidencias extends HttpServlet {
                     top = in.getIncidencia();
                 }
 
-                out.println("<div style='display: none;' class='nuevo'>" + top + "</div>");
+                out.println("<tr style='display: none;'><td class='nuevo'>" + top + "</td></tr>");
             } else {
                 out.println("");
             }
