@@ -139,3 +139,4 @@ textarea.size1 { height:70px; }
 .field, .button { -moz-border-radius:4px; -webkit-border-radius:4px; }
 .button, .pagging a { -moz-border-radius:3px; -webkit-border-radius:3px; }
 .button { -moz-box-shadow: 0 0 2px #978f6c; -webkit-box-shadow: 0 0 2px #978f6c;}
+#chat { height: 300px; overflow-y: scroll; display: block; }

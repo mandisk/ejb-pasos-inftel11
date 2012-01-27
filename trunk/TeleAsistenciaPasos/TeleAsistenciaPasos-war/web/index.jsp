@@ -15,7 +15,7 @@
     <body id="screenlog">
         <!-- Log in -->
         <div id="contenlog">
-            <span>Teleasisencia para escaladores</span>
+            <span>Teleasistencia para escaladores</span>
 
             <!-- Logo User -->
             <div id="logouser"></div>
