@@ -8,7 +8,7 @@
     <body>
 
         <div align=center>
-            <img src="EstadisticasServlet" width=600 height=600 border=0 alt="Chart" >
+            <img src="EstadisticasServlet" width=600 height=600 border=0 alt="Chart" />
              </div>
     </body>
 </html>

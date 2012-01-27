@@ -106,7 +106,7 @@ public class EstadisticasServlet extends HttpServlet {
 
 
             JFreeChart chart = ChartFactory.createPieChart(
-                    "Libros por Tipo", // Titulo
+                    "Incidencias por Mes", // Titulo
                     dataset, // Datos
                     true, // Presenta las leyendas
                     false, // No, don't display tooltips
