@@ -38,12 +38,16 @@ public class listadoIncidencia extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String dirJSP = "/incidencias.jsp";
+        int max = 0;
         IncidenciaBean incidenciaBean = new IncidenciaBean();
         Collection<Incidencia> incidencias = incidenciaFacade.findAll();
         incidenciaBean.setIncidenciaCollection(incidencias);
         for (Incidencia in : incidencias) {
-            incidenciaBean.setUltima(in.getIncidencia().intValue());           
+            if (in.getIncidencia().intValue() > max) {
+                max = in.getIncidencia().intValue();
+            }           
         }
+        incidenciaBean.setUltima(max);
         request.setAttribute("incidenciaBean", incidenciaBean);
         //List incidencias = incidenciaFacade.findAllIncidencias();
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(dirJSP);

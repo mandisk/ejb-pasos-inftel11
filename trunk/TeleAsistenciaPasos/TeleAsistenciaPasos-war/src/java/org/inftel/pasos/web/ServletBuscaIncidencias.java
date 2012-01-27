@@ -42,8 +42,6 @@ public class ServletBuscaIncidencias extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             BigDecimal top = new BigDecimal(0);
-            Logger.getLogger(ServletBuscaIncidencias.class.getName()).log(Level.SEVERE, request.
-                    getParameter("ult"));
             List<Incidencia> lIncidencia = incidenciaFacade.findHigher(request.getParameter("ult"));
             if (!lIncidencia.isEmpty()) {
                 for (Incidencia in : lIncidencia) {
