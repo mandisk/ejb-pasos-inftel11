@@ -18,9 +18,12 @@ import org.inftel.pasos.entity.Usuario;
  * @author Manuel Valls
  */
 public class IncidenciaBean implements Serializable {
-     Collection<Incidencia> incidenciaCollection;
-    
-    public IncidenciaBean(){}
+
+    Collection<Incidencia> incidenciaCollection;
+    private int ultima;
+
+    public IncidenciaBean() {
+    }
 
     public Collection<Incidencia> getIncidenciaCollection() {
         return incidenciaCollection;
@@ -30,4 +33,11 @@ public class IncidenciaBean implements Serializable {
         this.incidenciaCollection = incidenciaCollection;
     }
 
+    public int getUltima() {
+        return ultima;
     }
+
+    public void setUltima(int ultima) {
+        this.ultima = ultima;
+    }
+}
