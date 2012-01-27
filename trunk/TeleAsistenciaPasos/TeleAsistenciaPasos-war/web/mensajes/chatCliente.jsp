@@ -19,7 +19,7 @@
         <form action="../ServletMensajeria" id="form" method="POST">
             <input type="hidden" name="user" value="0" />
             <input type="text" id="msgText" name="msg" />
-            <input type="hidden" id="sesText" name="sesion" value="555" />
+            <input type="hidden" id="sesText" name="sesion" value="${ses}" />
             <input type="submit" value="Enviar" />
         </form>
         <script type="text/javascript">

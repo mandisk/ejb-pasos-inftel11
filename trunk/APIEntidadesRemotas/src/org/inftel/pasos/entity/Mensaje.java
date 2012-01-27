@@ -7,6 +7,7 @@ package org.inftel.pasos.entity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -31,10 +34,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Mensaje.findAll", query = "SELECT m FROM Mensaje m"),
     @NamedQuery(name = "Mensaje.findByIdMensaje", query = "SELECT m FROM Mensaje m WHERE m.idMensaje = :idMensaje"),
-    @NamedQuery(name = "Mensaje.findByIdSesion", query = "SELECT m FROM Mensaje m WHERE m.idSesion = :idSesion"),
+    @NamedQuery(name = "Mensaje.findByIdUsuario", query = "SELECT m FROM Mensaje m WHERE m.idUsuario = :idUsuario"),
     @NamedQuery(name = "Mensaje.findByTeleasistencia", query = "SELECT m FROM Mensaje m WHERE m.teleasistencia = :teleasistencia"),
     @NamedQuery(name = "Mensaje.findByTexto", query = "SELECT m FROM Mensaje m WHERE m.texto = :texto")})
 public class Mensaje implements Serializable {
+    @Column(name = "ID_USUARIO")
+    private BigInteger idUsuario;
+    @Column(name = "FECHA")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -44,8 +52,6 @@ public class Mensaje implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO, generator="msg_seq_gen")
     @SequenceGenerator(name="msg_seq_gen", sequenceName="SEQUENCE1", allocationSize=1)
     private BigDecimal idMensaje;
-    @Column(name = "ID_SESION")
-    private BigInteger idSesion;
     @Column(name = "TELEASISTENCIA")
     private BigInteger teleasistencia;
     @Size(max = 255)
@@ -65,14 +71,6 @@ public class Mensaje implements Serializable {
 
     public void setIdMensaje(BigDecimal idMensaje) {
         this.idMensaje = idMensaje;
-    }
-
-    public BigInteger getIdSesion() {
-        return idSesion;
-    }
-
-    public void setIdSesion(BigInteger idSesion) {
-        this.idSesion = idSesion;
     }
 
     public BigInteger getTeleasistencia() {
@@ -114,10 +112,26 @@ public class Mensaje implements Serializable {
     @Override
     public String toString() {
         String info = "";
-        info += "SESION: " + idSesion;
+        info += "\nUSUARIO: " + idUsuario;
         info += "\nTELEASISTENCIA: " + teleasistencia;
         info += "\nTEXTO: " + texto;
         return info;
+    }
+
+    public BigInteger getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(BigInteger idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
     
 }
