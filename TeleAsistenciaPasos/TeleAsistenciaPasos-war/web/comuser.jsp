@@ -14,6 +14,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Incidencia del usuario</title>
         <link rel="stylesheet" type="text/css" href="estilo.css" />
+        <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
     </head>
     <body>
         <!-- Header -->
@@ -68,7 +69,7 @@
                                 <div class="left">
                                     <c:choose>
                                         <c:when test="${personaBean.usuario.foto != null}">
-                                            <img src="http://localhost:8080/TeleAsistenciaPasos-war/ServletAvatar?id=${personaBean.usuario.idUsuario}&rnd=<%=System.currentTimeMillis() %>" />
+                                            <img src="http://localhost:8080/TeleAsistenciaPasos-war/ServletAvatar?id=${personaBean.usuario.idUsuario}&rnd=<%=System.currentTimeMillis()%>" />
                                         </c:when>
                                         <c:otherwise>
                                             <img src="images/foto.jpg"  /> 
@@ -112,23 +113,29 @@
                             <div class="box-head">
                                 <h2 class="left">Comunicaci&oacute;n con el usuario</h2>
                             </div>
-                            <!-- End Box Head -->	
+                            <!-- End Box Head -->
 
                             <!-- Frame Receptor -->
-                            <form action="" method="post">
+                            <form action="ServletMensajeria" id="formu" method="post">
 
                                 <!-- Form -->
+
                                 <div class="form">
                                     <p>
-                                        <label>Comunicación <span>(con usuario)</span></label>
-                                        <textarea class="field size1" rows="5" cols="50"></textarea>
+                                        <label>Comunicación <span>(con usuario)</span></label>    
+                                        <span id="chat"></span>
+                                    </p>                                    
+                                    <p>
+                                        <input type="hidden" name="user" value="1" />
+                                        <input type="text" id="msgText" name="msg" style="width: 60%;" />
+                                        <input type="hidden" id="sesText" name="sesion" value="${personaBean.usuario.idUsuario}" />
                                     </p>	
 
                                 </div>
                                 <!-- End Form -->
                                 <!-- Form Buttons -->
                                 <div class="buttons">
-                                    <input type="button" class="button buttonuser" value="Enviar Mensaje" />
+                                    <input type="submit" class="button buttonuser" value="Enviar Mensaje" />
                                 </div>
                                 <!-- End Form Buttons -->	
 
@@ -174,5 +181,39 @@
             <span class="left">2012 - Teleasistencia</span>
         </div>
         <!-- End Footer -->
+        <script type="text/javascript">
+            var ultimo = -1;
+            $("#formu").submit(function() {
+                $.ajax({
+                    url: "ServletMensajeria",
+                    data: $(this).serialize(),
+                    success: function(data){
+                        $("#chat").html($("#chat").html() + "<div>Teleoperadora: " + $("#msgText").val() + "</div>");
+                        ultimo = data;
+                        $("#msgText").val("");
+                    }
+                });
+                return false;
+            });
+            
+            $(document).ready(function() {
+                setInterval(function() {
+                    // Do something every 2 seconds
+                    $.ajax({
+                        url: "ServletCargarMensajes",
+                        data: "ult=" + ultimo + "&tel=0&ses=" + $("#sesText").val(),
+                        success: function(data){
+                            if (data.length > 5) {
+                                $("#chat").html($("#chat").html() + data);
+                                ultimo = $(".maroto").html();
+                                $(".maroto").removeClass("maroto");
+                            }
+                                
+                        }
+                    });
+                }, 2000);
+            });
+
+        </script>
     </body>
 </html>
