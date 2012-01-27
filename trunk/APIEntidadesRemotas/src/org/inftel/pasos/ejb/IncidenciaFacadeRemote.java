@@ -29,6 +29,8 @@ public interface IncidenciaFacadeRemote {
 
     int count();
 
-    public java.util.List findAllIncidencias();
+    public List findAllIncidencias();
+    
+    List<Incidencia> findHigher(String ultimo);
     
 }
