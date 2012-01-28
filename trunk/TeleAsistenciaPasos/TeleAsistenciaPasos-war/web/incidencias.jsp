@@ -38,7 +38,7 @@
                 <div id="navigation">
                     <ul>
                         <li><a href="#" class="active"><span>Incidencias</span></a></li>
-                        <li><a href="#"><span>Estadisticas</span></a></li>
+                        <li><a href="/TeleAsistenciaPasos-war/estadistica.jsp"><span>Estadisticas</span></a></li>
                     </ul>
                 </div>
                 <!-- End Main Nav -->
