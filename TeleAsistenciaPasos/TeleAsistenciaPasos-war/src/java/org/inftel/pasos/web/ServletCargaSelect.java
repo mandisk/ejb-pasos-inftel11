@@ -40,7 +40,7 @@ public class ServletCargaSelect extends HttpServlet {
         try {
             List<Usuario> usuarios = usuarioFacade.findAll();
             for (Usuario us : usuarios) {
-                out.println("<option value='" + us.getIdPersona().getIdPersona().toString() + "'>" + us.
+                out.println("<option value='" + us.getIdUsuario().toString() + "'>" + us.
                         getIdPersona().getNombre() + "</option>");
             }
         } finally {

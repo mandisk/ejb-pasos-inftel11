@@ -82,7 +82,7 @@ public class Servlet extends HttpServlet {
             incidencia.setLongitud(new BigDecimal(t.getLon()));
             incidencia.setNivelBateria(new BigInteger(Integer.toString(t.getPb())));
             incidencia.setTemperatura((double)t.getTemp());
-            
+            Logger.getLogger(procesaNuevoUsuario.class.getName()).log(Level.SEVERE, String.valueOf(cliente));
             Usuario us = usuarioFacade.find(new BigDecimal(cliente));
             
             incidencia.setIdUsuario(us);
