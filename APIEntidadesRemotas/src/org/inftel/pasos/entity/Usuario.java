@@ -4,26 +4,18 @@
  */
 package org.inftel.pasos.entity;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Collection;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -36,44 +28,23 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
-    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario"),
+    @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.id = :idUsuario"),
     @NamedQuery(name = "Usuario.findByImei", query = "SELECT u FROM Usuario u WHERE u.imei = :imei")})
-public class Usuario implements Serializable {
+public class Usuario extends BaseEntity {
     @Lob
     @Column(name = "FOTO")
     private byte[] foto;
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID_USUARIO")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="personas_seq_gen")
-    @SequenceGenerator(name="personas_seq_gen", sequenceName="PERSONAS_SEQUENCE", allocationSize=1)
-    private BigDecimal idUsuario;
     @Column(name = "IMEI")
     private BigInteger imei;
-    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
+    @JoinColumn(name = "id_persona_fk", referencedColumnName = "id")
     @ManyToOne(cascade=CascadeType.PERSIST)
-    private Persona idPersona;
-    @OneToMany(mappedBy = "idUsuario")
+    private Persona idPersonaFk;
+    @OneToMany(mappedBy = "idUsuarioFk")
     private Collection<Incidencia> incidenciaCollection;
-    @OneToMany(mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "idUsuarioFk")
     private Collection<Familiar> familiarCollection;
 
     public Usuario() {
-    }
-
-    public Usuario(BigDecimal idUsuario) {
-        this.idUsuario = idUsuario;
-    }
-
-    public BigDecimal getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(BigDecimal idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public BigInteger getImei() {
@@ -84,12 +55,12 @@ public class Usuario implements Serializable {
         this.imei = imei;
     }
 
-    public Persona getIdPersona() {
-        return idPersona;
+    public Persona getIdPersonaFk() {
+        return idPersonaFk;
     }
 
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
+    public void setIdPersonaFk(Persona idPersonaFk) {
+        this.idPersonaFk = idPersonaFk;
     }
 
     @XmlTransient
@@ -111,30 +82,10 @@ public class Usuario implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idUsuario != null ? idUsuario.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
-            return false;
-        }
-        Usuario other = (Usuario) object;
-        if ((this.idUsuario == null && other.idUsuario != null) || (this.idUsuario != null && !this.idUsuario.equals(other.idUsuario))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
     public String toString() {
         String info = "";
         info += "IMEI: " + imei;
-        info += "\n" + idPersona.toString();
+        info += "\n" + idPersonaFk.toString();
         return info;
     }
 

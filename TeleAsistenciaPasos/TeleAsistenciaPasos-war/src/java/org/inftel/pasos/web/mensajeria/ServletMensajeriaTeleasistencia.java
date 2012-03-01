@@ -6,7 +6,6 @@ package org.inftel.pasos.web.mensajeria;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.logging.Level;
@@ -17,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.MensajeFacadeRemote;
+import org.inftel.pasos.ejb.MensajeFacade;
 import org.inftel.pasos.entity.Mensaje;
 
 /**
@@ -28,7 +27,7 @@ import org.inftel.pasos.entity.Mensaje;
 public class ServletMensajeriaTeleasistencia extends HttpServlet {
 
     @EJB
-    private MensajeFacadeRemote mensajeFacade;
+    private MensajeFacade mensajeFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -50,7 +49,7 @@ public class ServletMensajeriaTeleasistencia extends HttpServlet {
             mensajeFacade.create(mensaje);
             
             Mensaje nMens = mensajeFacade.findByData(request.getParameter("sesion"), request.getParameter("user"), request.getParameter("msg"));
-            out.println(nMens.getIdMensaje());
+            out.println(nMens.getId());
         } catch (Exception ex) {
             Logger.getLogger(ServletMensajeriaTeleasistencia.class.getName()).log(Level.SEVERE, "Fallo al insertar mensaje", ex);
         }

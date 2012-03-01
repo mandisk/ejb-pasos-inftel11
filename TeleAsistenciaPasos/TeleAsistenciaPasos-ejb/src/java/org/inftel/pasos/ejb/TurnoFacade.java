@@ -14,7 +14,7 @@ import org.inftel.pasos.entity.Turno;
  * @author aljiru
  */
 @Stateless
-public class TurnoFacade extends AbstractFacade<Turno> implements TurnoFacadeRemote {
+public class TurnoFacade extends AbstractFacade<Turno> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-ejbPU")
     private EntityManager em;
 

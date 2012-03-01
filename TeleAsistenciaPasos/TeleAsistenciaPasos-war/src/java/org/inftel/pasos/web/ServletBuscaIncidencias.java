@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.IncidenciaFacadeRemote;
+import org.inftel.pasos.ejb.IncidenciaFacade;
 import org.inftel.pasos.entity.Incidencia;
 
 /**
@@ -27,7 +27,7 @@ import org.inftel.pasos.entity.Incidencia;
 public class ServletBuscaIncidencias extends HttpServlet {
 
     @EJB
-    private IncidenciaFacadeRemote incidenciaFacade;
+    private IncidenciaFacade incidenciaFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -41,24 +41,24 @@ public class ServletBuscaIncidencias extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            BigDecimal top = new BigDecimal(0);
+            Long top = new Long(0);
             List<Incidencia> lIncidencia = incidenciaFacade.findHigher(request.getParameter("ult"));
             if (!lIncidencia.isEmpty()) {
                 for (Incidencia in : lIncidencia) {
                     out.println("<tr class='alert'>");
-                    out.println("<td>" + in.getIdUsuario().getIdPersona().getNombre() + "</td>");
-                    out.println("<td>" + in.getIdUsuario().getIdPersona().getApellido1());
-                    out.println(in.getIdUsuario().getIdPersona().getApellido2() + "</td>");
-                    if (in.getIdEmpleado() != null) {
-                        out.println("<td>" + in.getIdEmpleado().getIdPersona().getNombre() + "</td>");
-                        out.println("<td>" + in.getIdEmpleado().getIdPersona().getApellido1() + "</td>");
+                    out.println("<td>" + in.getIdUsuarioFk().getIdPersonaFk().getNombre() + "</td>");
+                    out.println("<td>" + in.getIdUsuarioFk().getIdPersonaFk().getApellido1());
+                    out.println(in.getIdUsuarioFk().getIdPersonaFk().getApellido2() + "</td>");
+                    if (in.getIdEmpleadoFk() != null) {
+                        out.println("<td>" + in.getIdEmpleadoFk().getIdPersonaFk().getNombre() + "</td>");
+                        out.println("<td>" + in.getIdEmpleadoFk().getIdPersonaFk().getApellido1() + "</td>");
                     } else {
                         out.println("<td></td>");
                         out.println("<td></td>");
                     }
 
-                    if (in.getIdTincidencia() != null) {
-                        out.println("<td>" + in.getIdTincidencia().getDescripcion() + "</td>");
+                    if (in.getIdTincidenciaFk() != null) {
+                        out.println("<td>" + in.getIdTincidenciaFk().getDescripcion() + "</td>");
                     } else {
                         out.println("<td></td>");
                     }
@@ -66,10 +66,10 @@ public class ServletBuscaIncidencias extends HttpServlet {
                     out.println("<td>" + in.getFecha() + "</td>");
                     out.println("<td>" + in.getTemperatura() + "ºC</td>");
                     out.println("<td>" + in.getNivelBateria() + "%</td>");
-                    out.println("<td><a href='comUsuario?action=com&idPersona=" + in.getIdUsuario().
-                            getIdUsuario() + "'>Atender Usuario</a></td>");
+                    out.println("<td><a href='comUsuario?action=com&idPersona=" + in.getIdUsuarioFk().
+                            getId() + "'>Atender Usuario</a></td>");
                     out.println("</tr>");
-                    top = in.getIncidencia();
+                    top = in.getId();
                 }
 
                 out.println("<tr style='display: none;'><td class='nuevo'>" + top + "</td></tr>");

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>        
+    <disponibilidad id="-1" descripcion="08:00-10:00"/>
+    <disponibilidad id="-2" descripcion="10:00-12:00"/>
+    <disponibilidad id="-3" descripcion="12:00-14:00"/>
+    <disponibilidad id="-4" descripcion="14:00-16:00"/>
+    <disponibilidad id="-5" descripcion="16:00-18:00"/>
+    <disponibilidad id="-6" descripcion="18:00-20:00"/>
+    <disponibilidad id="-7" descripcion="20:00-22:00"/>
+    
+    <tipo_incidencia id="-2222" descripcion="Perdida o extravio"/>
+    <tipo_incidencia id="-2223" descripcion="Robo"/>
+    <tipo_incidencia id="-2224" descripcion="Agresion"/>
+    <tipo_incidencia id="-2225" descripcion="Secuestro"/>
+    <tipo_incidencia id="-2226" descripcion="Lesion"/>
+    <tipo_incidencia id="-2227" descripcion="incapacitacion temporal"/>
+    <tipo_incidencia id="-2228" descripcion="amenaza"/>
+    <tipo_incidencia id="-2229" descripcion="otros"/>
+    
+    <turno id="-1" descripcion="media mañana 08:00-10:00"/>
+    <turno id="-2" descripcion="mañana completa 08:00-14:00"/>
+    <turno id="-3" descripcion="mañana y media tarde 08:00-16:00"/>
+    <turno id="-4" descripcion="completa 08:00-21:00"/>
+    <turno id="-5" descripcion="reducida 10:00-20:00"/>
+    <turno id="-6" descripcion="media tarde 15:00-19:00"/>
+    <turno id="-7" descripcion="tarde completa 15:00-21:00"/>
+    
+    <persona id="-1164" telefono="34625837928" apellido1="Jimenez" apellido2="Ruiz" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-12" email="ajr_neo@hotmail.com" nombre="Alberto"/>
+    <persona id="-1161" telefono="34625837928" apellido1="Jimenez" apellido2="Ruiz" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-12" email="ajr_neo@hotmail.com" nombre="Alberto"/>
+    <persona id="-6" telefono="666111600" apellido1="Pulido" apellido2="Alarcon" direccion="Avda Marmoles, 4, 5ºC" localidad="Malaga" provincia="Malaga" codpostal="29009" fecnacimiento="1980-07-12" email="alarconpulido@mail.es" nombre="Juan"/>
+    <persona id="-7" telefono="666111700" apellido1="Alado" apellido2="Castellon" direccion="Calle Comedias, 3, 3ºB" localidad="Malaga" provincia="Malaga" codpostal="29010" fecnacimiento="1979-06-12" email="castelloalado@mail.es" nombre="Antonia"/>
+    <persona id="-8" telefono="666111800" apellido1="Loro" apellido2="Carrasco" direccion="Avda Andalucia, 1" localidad="Lepe" provincia="Huelva" codpostal="21440" fecnacimiento="1983-05-12" email="carrascoloro@mail.es" nombre="Fernando"/>
+    <persona id="-9" telefono="666111900" apellido1="del Águila" apellido2="Ruiperez" direccion="Calle Paso, 3" localidad="Pruna" provincia="Sevilla" codpostal="23412" fecnacimiento="1982-04-12" email="ruiperezaguila@mail.es" nombre="Ismael"/>
+    <persona id="-10" telefono="666112000" apellido1="Garrido" apellido2="López" direccion="Calle  Arahal, 12" localidad="Jabugo" provincia="Huelva" codpostal="21776" fecnacimiento="1981-02-12" email="lopezgarrido@mail.es" nombre="Rosa"/>
+    <persona id="-100" telefono="666112700" apellido1="Salvado" apellido2="Rodriguez" direccion="Avda Carlos Haya, 44, 5ºC" localidad="Malaga" provincia="Malaga" codpostal="29009" fecnacimiento="1950-07-12" email="rodriguezsal@mail.es" nombre="Francisco"/>
+    <persona id="-200" telefono="666112800" apellido1="Casado" apellido2="Gonzalez" direccion="Calle Marque de Larios, 4, 2ºB" localidad="Malaga" provincia="Malaga" codpostal="29010" fecnacimiento="1947-06-12" email="gonzalezcasado@mail.es" nombre="Josefa"/>
+    <persona id="-300" telefono="666112900" apellido1="Marin" apellido2="Bellido" direccion="Avda Andalucia, 100" localidad="Lepe" provincia="Huelva" codpostal="21440" fecnacimiento="1948-05-12" email="bellidomarin@mail.es" nombre="Isabel"/>
+    <persona id="-400" telefono="666113000" apellido1="Soldado" apellido2="Garcia" direccion="Calle de los Santos, 4" localidad="Pruna" provincia="Sevilla" codpostal="23412" fecnacimiento="1955-04-12" email="garciasoldado@mail.es" nombre="Manuel"/>
+    <persona id="-500" telefono="666000100" apellido1="Zafon" apellido2="Martin" direccion="Calle Lorca, 22" localidad="Jabugo" provincia="Huelva" codpostal="21776" fecnacimiento="1946-03-12" email="martinzafon@mail.es" nombre="Andres"/>
+    <persona id="-1000" telefono="666000200" apellido1="Garrido" apellido2="Ruiz" direccion="Pablo Picasso, 12, 2ºC" localidad="Madrid" provincia="Madrid" codpostal="29009" fecnacimiento="1970-07-12" email="ruizgarrido@mail.es" nombre="Carlos"/>
+    <persona id="-1001" telefono="666000300" apellido1="Sunto" apellido2="Tejero" direccion="Avda Reyes Catolicos, 34, 2ºB" localidad="Madrid" provincia="Madrid" codpostal="29010" fecnacimiento="1977-06-12" email="tejerosunto@mail.es" nombre="Alfonso"/>
+    <persona id="-1002" telefono="666000400" apellido1="Valad" apellido2="Florencio" direccion="Calle Gongora, 23, 4ºA" localidad="Mostoles" provincia="Madrid" codpostal="28800" fecnacimiento="1978-05-12" email="florenciovalad@mail.es" nombre="Maria"/>
+    <persona id="-1076" telefono="34625837928" apellido1="Jimenez" apellido2="Ruiz" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-17" email="ajr_neo@hotmail.com" nombre="Alberto"/>
+    <persona id="-1129" telefono="34625837928" apellido1="Jimenez" apellido2="Ruiz" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-25" email="ajr_neo@hotmail.com" nombre="Alberto"/>
+    <persona id="-1079" telefono="952000000" apellido1="Valls" apellido2="Vorndran" direccion="C\ La Paz" localidad="Rincon de la Victoria" provincia="Malaga" codpostal="29730" fecnacimiento="2012-01-19" email="mandisk@gmail.com" nombre="Manuel"/>    
+   
+    <usuario id="-701" id_persona_fk="-100" imei="12345678911111"/>
+    <usuario id="-702" id_persona_fk="-200" imei="12345678911222"/>
+    <usuario id="-703" id_persona_fk="-300" imei="12345678911333"/>
+    <usuario id="-704" id_persona_fk="-400" imei="12345678911444"/>
+    <usuario id="-705" id_persona_fk="-500" imei="12345678911555"/>
+    <usuario id="-1163" id_persona_fk="-1164" imei="1234567855"/>
+    <usuario id="-1160" id_persona_fk="-1161" imei="12345678977"/>
+    <usuario id="-1128" id_persona_fk="-1129" imei="363623627"/>
+    <usuario id="-1075" id_persona_fk="-1076" imei="5674575674"/>
+    <usuario id="-1078" id_persona_fk="-1079" imei="12347686756"/>
+    
+    <empleado id="-100" id_persona_fk="-1000" id_turno_fk="-1"/>
+    <empleado id="-110" id_persona_fk="-1001" id_turno_fk="-4"/>
+    <empleado id="-120" id_persona_fk="-1002" id_turno_fk="-7"/>
+    
+    <familiar id="-401" id_usuario_fk="-701" id_disponibilidad_fk="-1"/>
+    <familiar id="-402" id_usuario_fk="-702" id_disponibilidad_fk="-1"/>
+    <familiar id="-403" id_usuario_fk="-703" id_disponibilidad_fk="-2"/>
+    <familiar id="-404" id_usuario_fk="-704" id_disponibilidad_fk="-2"/>
+    <familiar id="-405" id_usuario_fk="-705" id_disponibilidad_fk="-3"/>
+    <familiar id="-406" id_usuario_fk="-705" id_disponibilidad_fk="-4"/>
+    
+    <incidencia id="-1144" fecha="1970-01-01" longitud="107" latitud="38" altitud="12002" temperatura="10" nivel_bateria="50" num_satelites="4" id_tincidencia_fk="-2222" id_usuario_fk="-1078"/>
+    <incidencia id="-1149" fecha="1970-01-01" longitud="123" latitud="36.7" altitud="-4.4" temperatura="24" nivel_bateria="57" num_satelites="4" id_tincidencia_fk="-2222" id_usuario_fk="-1078"/>
+    <incidencia id="-1147" fecha="1970-03-01" longitud="123" latitud="38" altitud="111" temperatura="25" nivel_bateria="60" num_satelites="4" id_tincidencia_fk="-2222" id_usuario_fk="-1078"/>
+    <incidencia id="-1112" fecha="1920-06-20" longitud="23.5" latitud="23.42" altitud="11.433" temperatura="30.54" nivel_bateria="80" num_satelites="4" id_tincidencia_fk="-2223" id_usuario_fk="-702"/>
+    <incidencia id="-1113" fecha="1920-01-21" longitud="143.25" latitud="134.2" altitud="11.43" temperatura="20.54" nivel_bateria="44" num_satelites="4" id_tincidencia_fk="-2224" id_usuario_fk="-1078"/>
+    <incidencia id="-1165" fecha="1970-01-01" longitud="123" latitud="38" altitud="111" temperatura="12" nivel_bateria="35" num_satelites="4" id_tincidencia_fk="-2222" id_usuario_fk="-1163"/>
+    
+    <mensaje id="-39" id_usuario="-1163" teleasistencia="1" texto="Wenas!" fecha="2012-01-28"/>
+    <mensaje id="-40" id_usuario="-1163" teleasistencia="0" texto="nas..." fecha="2012-01-28"/>       
+        
+</dataset>

@@ -11,11 +11,12 @@
     <class>org.inftel.pasos.entity.Turno</class>
     <class>org.inftel.pasos.entity.Usuario</class>
     <class>org.inftel.pasos.entity.Mensaje</class>
+    <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@olimpia.lcc.uma.es:1521:edgar"/>
-      <property name="javax.persistence.jdbc.password" value="inftel"/>
-      <property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver"/>
-      <property name="javax.persistence.jdbc.user" value="inftel11_30"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
+      <property name="javax.persistence.jdbc.password" value="app"/>
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.user" value="app"/>
     </properties>
   </persistence-unit>
 </persistence>

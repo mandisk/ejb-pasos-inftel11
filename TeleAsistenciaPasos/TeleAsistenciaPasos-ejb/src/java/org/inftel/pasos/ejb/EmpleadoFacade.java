@@ -14,7 +14,7 @@ import org.inftel.pasos.entity.Empleado;
  * @author aljiru
  */
 @Stateless
-public class EmpleadoFacade extends AbstractFacade<Empleado> implements EmpleadoFacadeRemote {
+public class EmpleadoFacade extends AbstractFacade<Empleado> {
 
     @PersistenceContext(unitName = "TeleAsistenciaPasos-ejbPU")
     private EntityManager em;

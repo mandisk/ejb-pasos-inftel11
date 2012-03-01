@@ -14,7 +14,7 @@ import org.inftel.pasos.entity.Persona;
  * @author aljiru
  */
 @Stateless
-public class PersonaFacade extends AbstractFacade<Persona> implements PersonaFacadeRemote {
+public class PersonaFacade extends AbstractFacade<Persona> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-ejbPU")
     private EntityManager em;
 

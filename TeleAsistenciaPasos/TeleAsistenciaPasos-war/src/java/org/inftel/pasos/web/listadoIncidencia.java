@@ -5,9 +5,7 @@
 package org.inftel.pasos.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.inftel.pasos.beans.IncidenciaBean;
-import org.inftel.pasos.ejb.IncidenciaFacadeRemote;
+import org.inftel.pasos.ejb.IncidenciaFacade;
 import org.inftel.pasos.entity.Incidencia;
 
 /**
@@ -26,7 +24,7 @@ import org.inftel.pasos.entity.Incidencia;
 @WebServlet(name = "listadoIncidencia", urlPatterns = {"/listadoIncidencia"})
 public class listadoIncidencia extends HttpServlet {
     @EJB
-    private IncidenciaFacadeRemote incidenciaFacade;
+    private IncidenciaFacade incidenciaFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -43,8 +41,8 @@ public class listadoIncidencia extends HttpServlet {
         Collection<Incidencia> incidencias = incidenciaFacade.findAll();
         incidenciaBean.setIncidenciaCollection(incidencias);
         for (Incidencia in : incidencias) {
-            if (in.getIncidencia().intValue() > max) {
-                max = in.getIncidencia().intValue();
+            if (in.getId().intValue() > max) {
+                max = in.getId().intValue();
             }           
         }
         incidenciaBean.setUltima(max);

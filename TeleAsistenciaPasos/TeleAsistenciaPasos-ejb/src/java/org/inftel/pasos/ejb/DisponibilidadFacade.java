@@ -14,7 +14,7 @@ import org.inftel.pasos.entity.Disponibilidad;
  * @author aljiru
  */
 @Stateless
-public class DisponibilidadFacade extends AbstractFacade<Disponibilidad> implements DisponibilidadFacadeRemote {
+public class DisponibilidadFacade extends AbstractFacade<Disponibilidad> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-ejbPU")
     private EntityManager em;
 

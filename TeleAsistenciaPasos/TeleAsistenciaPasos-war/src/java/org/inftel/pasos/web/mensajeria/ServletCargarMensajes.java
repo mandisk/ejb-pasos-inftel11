@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.MensajeFacadeRemote;
+import org.inftel.pasos.ejb.MensajeFacade;
 import org.inftel.pasos.entity.Mensaje;
 
 /**
@@ -27,7 +27,7 @@ import org.inftel.pasos.entity.Mensaje;
 public class ServletCargarMensajes extends HttpServlet {
 
     @EJB
-    private MensajeFacadeRemote mensajeFacade;
+    private MensajeFacade mensajeFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -42,7 +42,7 @@ public class ServletCargarMensajes extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             String cadena = "";
-            BigDecimal top = new BigDecimal(0);
+            Long top = new Long(0);
             String usuario = request.getParameter("tel");            
             if (usuario.equals("0")) {
                 cadena = "Usuario: ";
@@ -53,7 +53,7 @@ public class ServletCargarMensajes extends HttpServlet {
             if (!lMensaje.isEmpty()) {
                 for (Mensaje men : lMensaje) {
                     out.println("<div>" + cadena + men.getTexto() + "</div>");
-                    top = men.getIdMensaje();
+                    top = men.getId();
                 }
 
                 out.println("<div style='display: none;' class='maroto'>" + top + "</div>");

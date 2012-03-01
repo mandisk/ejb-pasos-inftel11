@@ -31,44 +31,24 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Empleado.findAll", query = "SELECT e FROM Empleado e"),
-    @NamedQuery(name = "Empleado.findByIdEmpleado", query = "SELECT e FROM Empleado e WHERE e.idEmpleado = :idEmpleado")})
-public class Empleado implements Serializable {
-
+    @NamedQuery(name = "Empleado.findById", query = "SELECT e FROM Empleado e WHERE e.id = :id")})
+public class Empleado extends BaseEntity {
     @Size(max = 100)
     @Column(name = "USUARIO")
     private String usuario;
     @Size(max = 100)
     @Column(name = "CONTRASENA")
     private String contrasena;
-    @OneToMany(mappedBy = "idEmpleado")
-    private Collection<Incidencia> incidenciaCollection;
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID_EMPLEADO")
-    private BigDecimal idEmpleado;
-    @JoinColumn(name = "ID_TURNO", referencedColumnName = "TURNO")
+    @OneToMany(mappedBy = "idEmpleadoFk")
+    private Collection<Incidencia> incidenciaCollection;    
+    @JoinColumn(name = "id_turno_fk", referencedColumnName = "id")
     @ManyToOne
-    private Turno idTurno;
-    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
+    private Turno idTurnoFk;
+    @JoinColumn(name = "id_persona_fk", referencedColumnName = "id")
     @ManyToOne
-    private Persona idPersona;
+    private Persona idPersonaFk;
 
     public Empleado() {
-    }
-
-    public Empleado(BigDecimal idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
-
-    public BigDecimal getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public void setIdEmpleado(BigDecimal idEmpleado) {
-        this.idEmpleado = idEmpleado;
     }
 
     public String getUsuario() {
@@ -79,20 +59,20 @@ public class Empleado implements Serializable {
         this.usuario = usuario;
     }
 
-    public Turno getIdTurno() {
-        return idTurno;
+    public Turno getIdTurnoFk() {
+        return idTurnoFk;
     }
 
-    public void setIdTurno(Turno idTurno) {
-        this.idTurno = idTurno;
+    public void setIdTurnoFk(Turno idTurnoFk) {
+        this.idTurnoFk = idTurnoFk;
     }
 
-    public Persona getIdPersona() {
-        return idPersona;
+    public Persona getIdPersonaFk() {
+        return idPersonaFk;
     }
 
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
+    public void setIdPersonaFk(Persona idPersonaFk) {
+        this.idPersonaFk = idPersonaFk;
     }
 
     public String getContrasena() {
@@ -110,31 +90,5 @@ public class Empleado implements Serializable {
 
     public void setIncidenciaCollection(Collection<Incidencia> incidenciaCollection) {
         this.incidenciaCollection = incidenciaCollection;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idEmpleado != null ? idEmpleado.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Empleado)) {
-            return false;
-        }
-        Empleado other = (Empleado) object;
-        if ((this.idEmpleado == null && other.idEmpleado != null) || (this.idEmpleado != null && !this.idEmpleado.
-                equals(other.idEmpleado))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "org.inftel.pasos.entity.Empleado[ idEmpleado=" + idEmpleado + " ]";
-    }
+    }    
 }
