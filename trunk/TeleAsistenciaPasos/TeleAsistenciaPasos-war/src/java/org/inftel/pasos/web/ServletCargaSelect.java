@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.UsuarioFacadeRemote;
+import org.inftel.pasos.ejb.UsuarioFacade;
 import org.inftel.pasos.entity.Usuario;
 
 /**
@@ -24,7 +24,7 @@ import org.inftel.pasos.entity.Usuario;
 public class ServletCargaSelect extends HttpServlet {
 
     @EJB
-    private UsuarioFacadeRemote usuarioFacade;
+    private UsuarioFacade usuarioFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,8 +40,8 @@ public class ServletCargaSelect extends HttpServlet {
         try {
             List<Usuario> usuarios = usuarioFacade.findAll();
             for (Usuario us : usuarios) {
-                out.println("<option value='" + us.getIdUsuario().toString() + "'>" + us.
-                        getIdPersona().getNombre() + "</option>");
+                out.println("<option value='" + us.getId().toString() + "'>" + us.
+                        getIdPersonaFk().getNombre() + "</option>");
             }
         } finally {
             out.close();

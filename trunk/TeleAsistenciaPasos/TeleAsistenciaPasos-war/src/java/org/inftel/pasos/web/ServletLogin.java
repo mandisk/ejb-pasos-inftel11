@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.EmpleadoFacadeRemote;
+import org.inftel.pasos.ejb.EmpleadoFacade;
 import org.inftel.pasos.entity.Empleado;
 import org.inftel.pasos.util.Utilities;
 
@@ -23,7 +23,7 @@ import org.inftel.pasos.util.Utilities;
 @WebServlet(name = "ServletLogin", urlPatterns = {"/ServletLogin"})
 public class ServletLogin extends HttpServlet {
     @EJB
-    private EmpleadoFacadeRemote empleadoFacade;
+    private EmpleadoFacade empleadoFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

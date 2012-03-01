@@ -37,7 +37,7 @@ public class Utilities {
         boolean isMultipart = ServletFileUpload.isMultipartContent(req);
         Usuario usuario = new Usuario();
         Persona persona = new Persona();
-        usuario.setIdPersona(persona);
+        usuario.setIdPersonaFk(persona);
 
         if (isMultipart) {
             // Patrón factoría para manejar ficheros procedentes de formularios
@@ -84,25 +84,25 @@ public class Utilities {
             if (fieldname.equals("imei")) {
                 usuario.setImei(new BigInteger(campo.getString()));
             } else if (fieldname.equals("nombre")) {
-                usuario.getIdPersona().setNombre(campo.getString());
+                usuario.getIdPersonaFk().setNombre(campo.getString());
             } else if (fieldname.equals("apellido1")) {
-                usuario.getIdPersona().setApellido1(campo.getString());
+                usuario.getIdPersonaFk().setApellido1(campo.getString());
             } else if (fieldname.equals("apellido2")) {
-                usuario.getIdPersona().setApellido2(campo.getString());
+                usuario.getIdPersonaFk().setApellido2(campo.getString());
             } else if (fieldname.equals("direccion")) {
-                usuario.getIdPersona().setDireccion(campo.getString());
+                usuario.getIdPersonaFk().setDireccion(campo.getString());
             } else if (fieldname.equals("localidad")) {
-                usuario.getIdPersona().setLocalidad(campo.getString());
+                usuario.getIdPersonaFk().setLocalidad(campo.getString());
             } else if (fieldname.equals("provincia")) {
-                usuario.getIdPersona().setProvincia(campo.getString());
+                usuario.getIdPersonaFk().setProvincia(campo.getString());
             } else if (fieldname.equals("codPostal")) {
-                usuario.getIdPersona().setCodpostal(new BigInteger(campo.getString()));
+                usuario.getIdPersonaFk().setCodpostal(new BigInteger(campo.getString()));
             } else if (fieldname.equals("telefono")) {
-                usuario.getIdPersona().setTelefono(new BigInteger(campo.getString()));
+                usuario.getIdPersonaFk().setTelefono(new BigInteger(campo.getString()));
             } else if (fieldname.equals("email")) {
-                usuario.getIdPersona().setEmail(campo.getString());
+                usuario.getIdPersonaFk().setEmail(campo.getString());
             } else if (fieldname.equals("fecnacimiento")) {
-                usuario.getIdPersona().setFecnacimiento(formatoDeFecha.parse(campo.getString()));
+                usuario.getIdPersonaFk().setFecnacimiento(formatoDeFecha.parse(campo.getString()));
             }
         } catch (NullPointerException e) {
             System.out.println("Puntero Nulo: " + e.getMessage());

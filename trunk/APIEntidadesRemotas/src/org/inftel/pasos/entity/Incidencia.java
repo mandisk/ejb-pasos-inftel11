@@ -4,26 +4,18 @@
  */
 package org.inftel.pasos.entity;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -34,8 +26,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "INCIDENCIA")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Incidencia.findAll", query = "SELECT i FROM Incidencia i ORDER BY i.incidencia DESC"),
-    @NamedQuery(name = "Incidencia.findByIncidencia", query = "SELECT i FROM Incidencia i WHERE i.incidencia = :incidencia"),
+    @NamedQuery(name = "Incidencia.findAll", query = "SELECT i FROM Incidencia i ORDER BY i.id DESC"),
+    @NamedQuery(name = "Incidencia.findById", query = "SELECT i FROM Incidencia i WHERE i.id = :id"),
     @NamedQuery(name = "Incidencia.findByFecha", query = "SELECT i FROM Incidencia i WHERE i.fecha = :fecha"),
     @NamedQuery(name = "Incidencia.findByLongitud", query = "SELECT i FROM Incidencia i WHERE i.longitud = :longitud"),
     @NamedQuery(name = "Incidencia.findByLatitud", query = "SELECT i FROM Incidencia i WHERE i.latitud = :latitud"),
@@ -43,22 +35,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Incidencia.findByTemperatura", query = "SELECT i FROM Incidencia i WHERE i.temperatura = :temperatura"),
     @NamedQuery(name = "Incidencia.findByNivelBateria", query = "SELECT i FROM Incidencia i WHERE i.nivelBateria = :nivelBateria"),
     @NamedQuery(name = "Incidencia.findByNumSatelites", query = "SELECT i FROM Incidencia i WHERE i.numSatelites = :numSatelites")})
-public class Incidencia implements Serializable {
-    @Column(name =     "FECHA")
+public class Incidencia extends BaseEntity {
+    @Column(name = "FECHA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    @JoinColumn(name = "ID_EMPLEADO", referencedColumnName = "ID_EMPLEADO")
+    @JoinColumn(name = "id_empleado_fk", referencedColumnName = "id")
     @ManyToOne
-    private Empleado idEmpleado;
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "INCIDENCIA")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="personas_seq_gen")
-    @SequenceGenerator(name="personas_seq_gen", sequenceName="PERSONAS_SEQUENCE", allocationSize=1)
-    private BigDecimal incidencia;
+    private Empleado idEmpleadoFk;    
     @Column(name = "LONGITUD")
     private BigDecimal longitud;
     @Column(name = "LATITUD")
@@ -71,34 +54,22 @@ public class Incidencia implements Serializable {
     private BigInteger nivelBateria;
     @Column(name = "NUM_SATELITES")
     private BigInteger numSatelites;
-    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
+    @JoinColumn(name = "id_usuario_fk", referencedColumnName = "id")
     @ManyToOne
-    private Usuario idUsuario;
-    @JoinColumn(name = "ID_TINCIDENCIA", referencedColumnName = "ID")
+    private Usuario idUsuarioFk;
+    @JoinColumn(name = "id_tincidencia_fk", referencedColumnName = "id")
     @ManyToOne
-    private TipoIncidencia idTincidencia;
+    private TipoIncidencia idTincidenciaFk;
 
     public Incidencia() {
     }
 
-    public Incidencia(BigDecimal incidencia) {
-        this.incidencia = incidencia;
+    public Empleado getIdEmpleadoFk() {
+        return idEmpleadoFk;
     }
 
-    public BigDecimal getIncidencia() {
-        return incidencia;
-    }
-
-    public void setIncidencia(BigDecimal incidencia) {
-        this.incidencia = incidencia;
-    }
-
-    public Empleado getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public void setIdEmpleado(Empleado idEmpleado) {
-        this.idEmpleado = idEmpleado;
+    public void setIdEmpleadoFk(Empleado idEmpleadoFk) {
+        this.idEmpleadoFk = idEmpleadoFk;
     }
 
     public BigDecimal getLongitud() {
@@ -149,42 +120,22 @@ public class Incidencia implements Serializable {
         this.numSatelites = numSatelites;
     }
 
-    public Usuario getIdUsuario() {
-        return idUsuario;
+    public TipoIncidencia getIdTincidenciaFk() {
+        return idTincidenciaFk;
     }
 
-    public void setIdUsuario(Usuario idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setIdTincidenciaFk(TipoIncidencia idTincidenciaFk) {
+        this.idTincidenciaFk = idTincidenciaFk;
     }
 
-    public TipoIncidencia getIdTincidencia() {
-        return idTincidencia;
+    public Usuario getIdUsuarioFk() {
+        return idUsuarioFk;
     }
 
-    public void setIdTincidencia(TipoIncidencia idTincidencia) {
-        this.idTincidencia = idTincidencia;
+    public void setIdUsuarioFk(Usuario idUsuarioFk) {
+        this.idUsuarioFk = idUsuarioFk;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (incidencia != null ? incidencia.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Incidencia)) {
-            return false;
-        }
-        Incidencia other = (Incidencia) object;
-        if ((this.incidencia == null && other.incidencia != null) || (this.incidencia != null && !this.incidencia.equals(other.incidencia))) {
-            return false;
-        }
-        return true;
-    }
-    
     @Override
     public String toString() {
         String info = "";

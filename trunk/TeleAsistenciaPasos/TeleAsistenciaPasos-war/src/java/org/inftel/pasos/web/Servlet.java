@@ -22,9 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.inftel.pasos.beans.TramaBean;
-import org.inftel.pasos.ejb.IncidenciaFacadeRemote;
-import org.inftel.pasos.ejb.TipoIncidenciaFacadeRemote;
-import org.inftel.pasos.ejb.UsuarioFacadeRemote;
+import org.inftel.pasos.ejb.IncidenciaFacade;
+import org.inftel.pasos.ejb.TipoIncidenciaFacade;
+import org.inftel.pasos.ejb.UsuarioFacade;
 import org.inftel.pasos.entity.Incidencia;
 import org.inftel.pasos.entity.TipoIncidencia;
 import org.inftel.pasos.entity.Usuario;
@@ -36,11 +36,11 @@ import org.inftel.pasos.entity.Usuario;
 @WebServlet(name = "Servlet", urlPatterns = {"/Servlet"})
 public class Servlet extends HttpServlet {
     @EJB
-    private TipoIncidenciaFacadeRemote tipoIncidenciaFacade;
+    private TipoIncidenciaFacade tipoIncidenciaFacade;
     @EJB
-    private UsuarioFacadeRemote usuarioFacade;
+    private UsuarioFacade usuarioFacade;
     @EJB
-    private IncidenciaFacadeRemote incidenciaFacade;
+    private IncidenciaFacade incidenciaFacade;
 
     private String trama;
     private String cliente;
@@ -77,7 +77,7 @@ public class Servlet extends HttpServlet {
             
             TipoIncidencia ti = tipoIncidenciaFacade.find(new BigDecimal("2222"));
             
-            incidencia.setIdTincidencia(ti);
+            incidencia.setIdTincidenciaFk(ti);
             incidencia.setLatitud(new BigDecimal(t.getLat()));
             incidencia.setLongitud(new BigDecimal(t.getLon()));
             incidencia.setNivelBateria(new BigInteger(Integer.toString(t.getPb())));
@@ -85,7 +85,7 @@ public class Servlet extends HttpServlet {
             Logger.getLogger(procesaNuevoUsuario.class.getName()).log(Level.SEVERE, String.valueOf(cliente));
             Usuario us = usuarioFacade.find(new BigDecimal(cliente));
             
-            incidencia.setIdUsuario(us);
+            incidencia.setIdUsuarioFk(us);
             
             incidenciaFacade.create(incidencia);            
 

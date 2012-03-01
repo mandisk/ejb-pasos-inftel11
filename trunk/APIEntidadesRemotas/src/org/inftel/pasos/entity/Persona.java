@@ -36,7 +36,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findByIdPersona", query = "SELECT p FROM Persona p WHERE p.idPersona = :idPersona"),
+    @NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.id = :id"),
     @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono"),
     @NamedQuery(name = "Persona.findByApellido1", query = "SELECT p FROM Persona p WHERE p.apellido1 = :apellido1"),
     @NamedQuery(name = "Persona.findByApellido2", query = "SELECT p FROM Persona p WHERE p.apellido2 = :apellido2"),
@@ -47,23 +47,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Persona.findByFecnacimiento", query = "SELECT p FROM Persona p WHERE p.fecnacimiento = :fecnacimiento"),
     @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email"),
     @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre")})
-public class Persona implements Serializable {
+public class Persona extends BaseEntity {
     @Column(name = "FECNACIMIENTO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecnacimiento;
-    @OneToMany(mappedBy = "idPersona")
+    @OneToMany(mappedBy = "idPersonaFk")
     private Collection<Usuario> usuarioCollection;
-    @OneToMany(mappedBy = "idPersona")
+    @OneToMany(mappedBy = "idPersonaFk")
     private Collection<Empleado> empleadoCollection;
-    private static final long serialVersionUID = 1L;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ID_PERSONA")
-    @GeneratedValue(strategy = GenerationType.AUTO, generator="personas_seq_gen")
-    @SequenceGenerator(name="personas_seq_gen", sequenceName="PERSONAS_SEQUENCE", allocationSize=1)
-    private BigDecimal idPersona;
     @Column(name = "TELEFONO")
     private BigInteger telefono;
     @Size(max = 50)
@@ -92,18 +83,6 @@ public class Persona implements Serializable {
     private String nombre;    
 
     public Persona() {
-    }
-
-    public Persona(BigDecimal idPersona) {
-        this.idPersona = idPersona;
-    }
-
-    public BigDecimal getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(BigDecimal idPersona) {
-        this.idPersona = idPersona;
     }
 
     public BigInteger getTelefono() {
@@ -176,26 +155,6 @@ public class Persona implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idPersona != null ? idPersona.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Persona)) {
-            return false;
-        }
-        Persona other = (Persona) object;
-        if ((this.idPersona == null && other.idPersona != null) || (this.idPersona != null && !this.idPersona.equals(other.idPersona))) {
-            return false;
-        }
-        return true;
     }
 
     @Override

@@ -3,17 +3,14 @@ import java.awt.Color;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.IncidenciaFacadeRemote;
+import org.inftel.pasos.ejb.IncidenciaFacade;
 import org.inftel.pasos.entity.Incidencia;
-import org.inftel.pasos.web.procesaNuevoUsuario;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -27,7 +24,7 @@ import org.jfree.data.general.DefaultPieDataset;
 public class EstadisticasServlet extends HttpServlet {
 
     @EJB
-    private IncidenciaFacadeRemote incidenciaFacade;
+    private IncidenciaFacade incidenciaFacade;
     int enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre;
 
     /**

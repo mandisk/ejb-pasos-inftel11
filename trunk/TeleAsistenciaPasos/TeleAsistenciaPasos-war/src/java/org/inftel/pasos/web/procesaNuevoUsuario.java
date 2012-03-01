@@ -14,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.UsuarioFacadeRemote;
+import org.inftel.pasos.ejb.UsuarioFacade;
 import org.inftel.pasos.entity.Usuario;
 import org.inftel.pasos.util.Utilities;
 
@@ -26,7 +26,7 @@ import org.inftel.pasos.util.Utilities;
 public class procesaNuevoUsuario extends HttpServlet {
 
     @EJB
-    private UsuarioFacadeRemote usuarioFacade;
+    private UsuarioFacade usuarioFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

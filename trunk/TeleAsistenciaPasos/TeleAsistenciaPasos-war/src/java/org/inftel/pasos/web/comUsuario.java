@@ -5,7 +5,6 @@
 package org.inftel.pasos.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,9 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.inftel.pasos.beans.PersonaBean;
-import org.inftel.pasos.ejb.PersonaFacadeRemote;
-import org.inftel.pasos.ejb.UsuarioFacadeRemote;
-import org.inftel.pasos.entity.Persona;
+import org.inftel.pasos.ejb.PersonaFacade;
+import org.inftel.pasos.ejb.UsuarioFacade;
 import org.inftel.pasos.entity.Usuario;
 
 /**
@@ -27,9 +25,9 @@ import org.inftel.pasos.entity.Usuario;
 public class comUsuario extends HttpServlet {
 
     @EJB
-    private UsuarioFacadeRemote usuarioFacade;
+    private UsuarioFacade usuarioFacade;
     @EJB
-    private PersonaFacadeRemote personaFacade;
+    private PersonaFacade personaFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

@@ -11,8 +11,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -21,7 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.inftel.pasos.ejb.UsuarioFacadeRemote;
+import org.inftel.pasos.ejb.UsuarioFacade;
 import org.inftel.pasos.entity.Usuario;
 
 /**
@@ -31,7 +29,7 @@ import org.inftel.pasos.entity.Usuario;
 @WebServlet(name = "ServletAvatar", urlPatterns = {"/ServletAvatar"})
 public class ServletAvatar extends HttpServlet {
     @EJB
-    private UsuarioFacadeRemote usuarioFacade;
+    private UsuarioFacade usuarioFacade;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.

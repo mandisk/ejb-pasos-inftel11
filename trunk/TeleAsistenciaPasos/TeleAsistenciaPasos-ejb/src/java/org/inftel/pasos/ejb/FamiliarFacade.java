@@ -14,7 +14,7 @@ import org.inftel.pasos.entity.Familiar;
  * @author aljiru
  */
 @Stateless
-public class FamiliarFacade extends AbstractFacade<Familiar> implements FamiliarFacadeRemote {
+public class FamiliarFacade extends AbstractFacade<Familiar> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-ejbPU")
     private EntityManager em;
 
