@@ -16,7 +16,7 @@ import org.inftel.pasos.entity.Mensaje;
  * @author aljiru
  */
 @Stateless
-@Path("org.inftel.pasos.tables.mensaje")
+@Path("mensaje")
 public class MensajeFacadeREST extends AbstractFacade<Mensaje> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-warPU")
     private EntityManager em;

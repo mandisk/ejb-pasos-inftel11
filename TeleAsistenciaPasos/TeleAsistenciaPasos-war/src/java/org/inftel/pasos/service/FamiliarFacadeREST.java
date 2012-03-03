@@ -16,7 +16,7 @@ import org.inftel.pasos.entity.Familiar;
  * @author aljiru
  */
 @Stateless
-@Path("org.inftel.pasos.tables.familiar")
+@Path("familiar")
 public class FamiliarFacadeREST extends AbstractFacade<Familiar> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-warPU")
     private EntityManager em;

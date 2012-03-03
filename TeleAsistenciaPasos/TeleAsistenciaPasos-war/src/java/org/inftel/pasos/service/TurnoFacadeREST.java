@@ -17,7 +17,7 @@ import org.inftel.pasos.entity.Turno;
  * @author aljiru
  */
 @Stateless
-@Path("org.inftel.pasos.tables.turno")
+@Path("turno")
 public class TurnoFacadeREST extends AbstractFacade<Turno> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-warPU")
     private EntityManager em;

@@ -16,7 +16,7 @@ import org.inftel.pasos.entity.Incidencia;
  * @author aljiru
  */
 @Stateless
-@Path("org.inftel.pasos.tables.incidencia")
+@Path("incidencia")
 public class IncidenciaFacadeREST extends AbstractFacade<Incidencia> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-warPU")
     private EntityManager em;
@@ -54,7 +54,7 @@ public class IncidenciaFacadeREST extends AbstractFacade<Incidencia> {
 
     @GET
     @Override
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<Incidencia> findAll() {
         return super.findAll();
     }
