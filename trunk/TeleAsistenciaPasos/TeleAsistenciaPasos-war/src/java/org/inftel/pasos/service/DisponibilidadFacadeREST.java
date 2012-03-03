@@ -16,7 +16,7 @@ import org.inftel.pasos.entity.Disponibilidad;
  * @author aljiru
  */
 @Stateless
-@Path("org.inftel.pasos.tables.disponibilidad")
+@Path("disponibilidad")
 public class DisponibilidadFacadeREST extends AbstractFacade<Disponibilidad> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-warPU")
     private EntityManager em;
@@ -54,7 +54,7 @@ public class DisponibilidadFacadeREST extends AbstractFacade<Disponibilidad> {
 
     @GET
     @Override
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<Disponibilidad> findAll() {
         return super.findAll();
     }

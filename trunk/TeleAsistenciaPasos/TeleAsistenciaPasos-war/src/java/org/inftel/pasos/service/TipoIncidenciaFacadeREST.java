@@ -17,7 +17,7 @@ import org.inftel.pasos.entity.TipoIncidencia;
  * @author aljiru
  */
 @Stateless
-@Path("org.inftel.pasos.tables.tipoincidencia")
+@Path("tipoincidencia")
 public class TipoIncidenciaFacadeREST extends AbstractFacade<TipoIncidencia> {
     @PersistenceContext(unitName = "TeleAsistenciaPasos-warPU")
     private EntityManager em;
