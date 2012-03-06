@@ -5,13 +5,8 @@
 package org.inftel.pasos.beans;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.Collection;
-import java.util.Date;
 import org.inftel.pasos.entity.Incidencia;
-import org.inftel.pasos.entity.TipoIncidencia;
-import org.inftel.pasos.entity.Usuario;
 
 /**
  *

@@ -10,7 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.math.BigDecimal;
 import javax.ejb.EJB;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -41,7 +40,7 @@ public class ServletAvatar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        BigDecimal identi = new BigDecimal(request.getParameter("id"));
+        Long identi = new Long(request.getParameter("id"));
         Usuario usuario = usuarioFacade.find(identi);
         byte[] data = usuario.getFoto();  
         InputStream in = new ByteArrayInputStream(data);

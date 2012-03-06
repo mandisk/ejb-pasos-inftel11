@@ -4,7 +4,6 @@
  */
 package org.inftel.pasos.ejb;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -32,7 +31,7 @@ public class MensajeFacade extends AbstractFacade<Mensaje> {
 
     public List<Mensaje> findHigher(String idm, String ses, String tel) {
         return em.createQuery("SELECT m FROM Mensaje m WHERE m.idMensaje > :idm AND m.idUsuario = :ses AND m.teleasistencia = :tel ORDER BY m.idMensaje ASC").
-                setParameter("idm", new BigDecimal(idm)).setParameter("ses", new BigInteger(ses)).
+                setParameter("idm", new Long(idm)).setParameter("ses", new BigInteger(ses)).
                 setParameter("tel", new BigInteger(tel)).getResultList();
     }
 

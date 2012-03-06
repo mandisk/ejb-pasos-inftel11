@@ -69,7 +69,7 @@
                                 <div class="left">
                                     <c:choose>
                                         <c:when test="${personaBean.usuario.foto != null}">
-                                            <img src="http://localhost:8080/TeleAsistenciaPasos-war/ServletAvatar?id=${personaBean.usuario.idUsuario}&rnd=<%=System.currentTimeMillis()%>" />
+                                            <img src="http://localhost:8080/TeleAsistenciaPasos-war/ServletAvatar?id=${personaBean.usuario.id}&rnd=<%=System.currentTimeMillis()%>" />
                                         </c:when>
                                         <c:otherwise>
                                             <img src="images/foto.jpg"  /> 
@@ -78,20 +78,20 @@
                                 </div>
                                 <table cellspacing="6">
                                     <tr>
-                                        <td><b>Nombre:</b> ${personaBean.usuario.idPersona.nombre}</td> 
-                                        <td><b>Apellidos:</b> ${personaBean.usuario.idPersona.apellido1} ${personaBean.usuario.idPersona.apellido2}</td>
+                                        <td><b>Nombre:</b> ${personaBean.usuario.idPersonaFk.nombre}</td> 
+                                        <td><b>Apellidos:</b> ${personaBean.usuario.idPersonaFk.apellido1} ${personaBean.usuario.idPersona.apellido2}</td>
                                     </tr>
                                     <tr>
-                                        <td><b>Dirección:</b> ${personaBean.usuario.idPersona.direccion}</td>
-                                        <td><b>Localidad:</b> ${personaBean.usuario.idPersona.localidad}</td>
+                                        <td><b>Dirección:</b> ${personaBean.usuario.idPersonaFk.direccion}</td>
+                                        <td><b>Localidad:</b> ${personaBean.usuario.idPersonaFk.localidad}</td>
                                     </tr>
                                     <tr>
-                                        <td><b>Provincia:</b> ${personaBean.usuario.idPersona.provincia}</td>
-                                        <td><b>Cod. Postal:</b> ${personaBean.usuario.idPersona.codpostal}</td>
+                                        <td><b>Provincia:</b> ${personaBean.usuario.idPersonaFk.provincia}</td>
+                                        <td><b>Cod. Postal:</b> ${personaBean.usuario.idPersonaFk.codpostal}</td>
                                     </tr>
                                     <tr>
-                                        <td><b>Fecha de Nacimiento:</b> ${personaBean.usuario.idPersona.fecnacimiento}</td>
-                                        <td><b>Email:</b> ${personaBean.usuario.idPersona.email}</td>
+                                        <td><b>Fecha de Nacimiento:</b> ${personaBean.usuario.idPersonaFk.fecnacimiento}</td>
+                                        <td><b>Email:</b> ${personaBean.usuario.idPersonaFk.email}</td>
                                     </tr>
                                 </table>
                             </div>
@@ -128,7 +128,7 @@
                                     <p>
                                         <input type="hidden" name="user" value="1" />
                                         <input type="text" id="msgText" name="msg" style="width: 60%;" />
-                                        <input type="hidden" id="sesText" name="sesion" value="${personaBean.usuario.idUsuario}" />
+                                        <input type="hidden" id="sesText" name="sesion" value="${personaBean.usuario.id}" />
                                     </p>	
 
                                 </div>

@@ -55,9 +55,9 @@
     <usuario id="-1075" id_persona_fk="-1076" imei="5674575674"/>
     <usuario id="-1078" id_persona_fk="-1079" imei="12347686756"/>
     
-    <empleado id="-100" id_persona_fk="-1000" id_turno_fk="-1"/>
-    <empleado id="-110" id_persona_fk="-1001" id_turno_fk="-4"/>
-    <empleado id="-120" id_persona_fk="-1002" id_turno_fk="-7"/>
+    <empleado id="-100" id_persona_fk="-1000" contrasena="81dc9bdb52d04dc20036dbd8313ed055" usuario="aljiru" id_turno_fk="-1"/>
+    <empleado id="-110" id_persona_fk="-1001" contrasena="81dc9bdb52d04dc20036dbd8313ed055" usuario="valls" id_turno_fk="-4"/>
+    <empleado id="-120" id_persona_fk="-1002" contrasena="81dc9bdb52d04dc20036dbd8313ed055"  usuario="thefallen" id_turno_fk="-7"/>
     
     <familiar id="-401" id_usuario_fk="-701" id_disponibilidad_fk="-1"/>
     <familiar id="-402" id_usuario_fk="-702" id_disponibilidad_fk="-1"/>

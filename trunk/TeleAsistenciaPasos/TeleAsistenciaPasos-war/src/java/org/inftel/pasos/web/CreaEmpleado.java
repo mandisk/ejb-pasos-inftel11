@@ -5,7 +5,6 @@
 package org.inftel.pasos.web;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,7 +35,7 @@ public class CreaEmpleado extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            Empleado emp = (Empleado) empleadoFacade.find(new BigDecimal(100));
+            Empleado emp = (Empleado) empleadoFacade.find(new Long(-100));
             String pass = Utilities.md5("1234");
             emp.setContrasena(pass);
             empleadoFacade.edit(emp);
