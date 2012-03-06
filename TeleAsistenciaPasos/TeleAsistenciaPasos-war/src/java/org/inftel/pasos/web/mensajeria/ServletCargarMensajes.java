@@ -6,7 +6,6 @@ package org.inftel.pasos.web.mensajeria;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

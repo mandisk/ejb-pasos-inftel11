@@ -84,17 +84,17 @@
                                     <tbody id="tBody">
                                         <c:forEach var="order" items="${incidenciaBean.incidenciaCollection}">
                                             <tr>
-                                                <td>${order.idUsuario.idPersona.nombre}</td> 
-                                                <td>${order.idUsuario.idPersona.apellido1} 
-                                                    ${order.idUsuario.idPersona.apellido2}</td> 
-                                                <td>${order.idEmpleado.idPersona.nombre} 
-                                                    ${order.idEmpleado.idPersona.apellido1}</td> 
-                                                <td>${order.idTincidencia.descripcion}</td> 
+                                                <td>${order.idUsuarioFk.idPersonaFk.nombre}</td> 
+                                                <td>${order.idUsuarioFk.idPersonaFk.apellido1} 
+                                                    ${order.idUsuarioFk.idPersonaFk.apellido2}</td> 
+                                                <td>${order.idEmpleadoFk.idPersonaFk.nombre} 
+                                                    ${order.idEmpleadoFk.idPersonaFk.apellido1}</td> 
+                                                <td>${order.idTincidenciaFk.descripcion}</td> 
                                                 <td>${order.fecha}</td> 
                                                 <td>${order.fecha}</td> 
                                                 <td>${order.temperatura}ºC</td> 
                                                 <td>${order.nivelBateria}%</td> 
-                                                <td><a href="${pageContext.request.contextPath}/comUsuario?action=com&idPersona=${order.idUsuario.idUsuario}">Atender Usuario</a></td>
+                                                <td><a href="${pageContext.request.contextPath}/comUsuario?action=com&idPersona=${order.idUsuarioFk.id}">Atender Usuario</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

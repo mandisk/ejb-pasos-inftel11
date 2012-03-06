@@ -75,7 +75,7 @@ public class Servlet extends HttpServlet {
             incidencia.setAltitud(new BigDecimal(t.getAlt()));
             incidencia.setFecha(new Date(t.getDate()));
             
-            TipoIncidencia ti = tipoIncidenciaFacade.find(new BigDecimal("2222"));
+            TipoIncidencia ti = tipoIncidenciaFacade.find(new Long("2222"));
             
             incidencia.setIdTincidenciaFk(ti);
             incidencia.setLatitud(new BigDecimal(t.getLat()));
@@ -83,7 +83,7 @@ public class Servlet extends HttpServlet {
             incidencia.setNivelBateria(new BigInteger(Integer.toString(t.getPb())));
             incidencia.setTemperatura((double)t.getTemp());
             Logger.getLogger(procesaNuevoUsuario.class.getName()).log(Level.SEVERE, String.valueOf(cliente));
-            Usuario us = usuarioFacade.find(new BigDecimal(cliente));
+            Usuario us = usuarioFacade.find(new Long(cliente));
             
             incidencia.setIdUsuarioFk(us);
             

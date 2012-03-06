@@ -4,7 +4,6 @@
  */
 package org.inftel.pasos.ejb;
 
-import java.math.BigDecimal;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -37,7 +36,7 @@ public class IncidenciaFacade extends AbstractFacade<Incidencia> {
 
     public List<Incidencia> findHigher(String ultimo) {
         return em.createQuery("SELECT i FROM Incidencia i WHERE i.incidencia > :ultimo ORDER BY i.incidencia ASC").
-                setParameter("ultimo", new BigDecimal(ultimo)).getResultList();
+                setParameter("ultimo", new Long(ultimo)).getResultList();
     }
     
 }
