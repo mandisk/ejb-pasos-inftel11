@@ -27,7 +27,7 @@ public class MensajeFacadeREST extends AbstractFacade<Mensaje> {
 
     @POST
     @Override
-    @Consumes({"application/xml", "application/json"})
+    @Consumes({"application/json"})
     public void create(Mensaje entity) {
         super.create(entity);
     }
