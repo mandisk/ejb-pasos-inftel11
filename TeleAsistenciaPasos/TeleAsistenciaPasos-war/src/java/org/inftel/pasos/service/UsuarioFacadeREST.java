@@ -4,13 +4,13 @@
  */
 package org.inftel.pasos.service;
 
+import java.math.BigInteger;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.*;
 import org.inftel.pasos.entity.Usuario;
-
 
 /**
  *
@@ -19,6 +19,7 @@ import org.inftel.pasos.entity.Usuario;
 @Stateless
 @Path("usuario")
 public class UsuarioFacadeREST extends AbstractFacade<Usuario> {
+
     @PersistenceContext(unitName = "TeleAsistenciaPasos-warPU")
     private EntityManager em;
 
@@ -54,6 +55,15 @@ public class UsuarioFacadeREST extends AbstractFacade<Usuario> {
     }
 
     @GET
+    @Path("imei/{imei}")
+    @Produces({"application/json"})
+    public Usuario findByImei(@PathParam("imei") Long imei) {
+        Usuario us = (Usuario) em.createNamedQuery("Usuario.findByImei").setParameter("imei", new BigInteger("355797045344688")).
+                getSingleResult();
+        return us;
+    }
+
+    @GET
     @Override
     @Produces({"application/xml", "application/json"})
     public List<Usuario> findAll() {
@@ -78,5 +88,4 @@ public class UsuarioFacadeREST extends AbstractFacade<Usuario> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
 }

@@ -101,7 +101,8 @@
 
                             <!-- Form Buttons -->
                             <div class="buttons">
-                                <input type="submit" class="button buttonreg" value="Completar Registro" />
+                                <input type="submit" class="button" value="Completar Registro" />
+                                <div style="clear: both;">
                             </div>
                             <!-- End Form Buttons -->
                         </form>   
@@ -113,7 +114,7 @@
         </div>
         <!-- End Container -->
         <!-- Footer -->
-        <div id="footer" class="footerrel">
+        <div id="footer">
             <span class="left">2012 - Teleasistencia</span>
         </div>
         <!-- End Footer -->
