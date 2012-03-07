@@ -16,6 +16,8 @@
     <tipo_incidencia id="-2227" descripcion="incapacitacion temporal"/>
     <tipo_incidencia id="-2228" descripcion="amenaza"/>
     <tipo_incidencia id="-2229" descripcion="otros"/>
+    <tipo_incidencia id="-2230" descripcion="Alejamiento"/>
+    <tipo_incidencia id="-2231" descripcion="Bateria baja"/>
     
     <turno id="-1" descripcion="media mañana 08:00-10:00"/>
     <turno id="-2" descripcion="mañana completa 08:00-14:00"/>
@@ -50,7 +52,7 @@
     <usuario id="-704" id_persona_fk="-400" imei="12345678911444" grupo="montanero"/>
     <usuario id="-705" id_persona_fk="-500" imei="12345678911555" grupo="montanero"/>
     <usuario id="-1163" id_persona_fk="-1164" imei="1234567855" grupo="montanero"/>
-    <usuario id="-1160" id_persona_fk="-1161" imei="12345678977" grupo="montanero"/>
+    <usuario id="-1160" id_persona_fk="-1161" imei="359234046762482" grupo="montanero"/>
     <usuario id="-1128" id_persona_fk="-1129" imei="355797045344688" grupo="montanero"/>
     <usuario id="-1075" id_persona_fk="-1076" imei="356216044532366" grupo="montanero"/>
     <usuario id="-1078" id_persona_fk="-1079" imei="356216042445132" grupo="montanero"/>
