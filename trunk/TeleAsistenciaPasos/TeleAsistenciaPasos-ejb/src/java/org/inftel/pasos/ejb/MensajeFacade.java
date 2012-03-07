@@ -39,5 +39,5 @@ public class MensajeFacade extends AbstractFacade<Mensaje> {
         return (Mensaje)em.createQuery("SELECT m FROM Mensaje m WHERE m.texto = :txt AND m.idUsuario = :ses AND m.teleasistencia = :tel ORDER BY m.id DESC").
                 setParameter("txt", txt).setParameter("ses", new BigInteger(ses)).
                 setParameter("tel", new BigInteger(tel)).getResultList().get(0);
-    }
+    }    
 }

@@ -189,6 +189,5 @@ public class Persona extends BaseEntity {
 
     public void setEmpleadoCollection(Collection<Empleado> empleadoCollection) {
         this.empleadoCollection = empleadoCollection;
-    }
-    
+    }    
 }
