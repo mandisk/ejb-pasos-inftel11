@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -43,6 +44,10 @@ public class Usuario extends BaseEntity {
     private Collection<Incidencia> incidenciaCollection;
     @OneToMany(mappedBy = "idUsuarioFk")
     private Collection<Familiar> familiarCollection;
+    @Size(max = 255)
+    @Column(name = "GRUPO")
+    private String grupo;
+
 
     public Usuario() {
     }
@@ -95,6 +100,14 @@ public class Usuario extends BaseEntity {
 
     public void setFoto(byte[] foto) {
         this.foto = foto;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
     }
     
 }

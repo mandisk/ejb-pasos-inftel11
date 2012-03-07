@@ -37,5 +37,6 @@ public class IncidenciaFacade extends AbstractFacade<Incidencia> {
     public List<Incidencia> findHigher(String ultimo) {
         return em.createQuery("SELECT i FROM Incidencia i WHERE i.id > :ultimo ORDER BY i.id ASC").
                 setParameter("ultimo", new Long(ultimo)).getResultList();
-    }    
+    }
+    
 }
