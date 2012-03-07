@@ -26,7 +26,7 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         super(Usuario.class);
     }
     public Usuario findById(Integer id) {
-        return (Usuario) em.createQuery("SELECT u FROM Usuario u WHERE u.idUsuario = :id").
+        return (Usuario) em.createQuery("SELECT u FROM Usuario u WHERE u.id = :id").
                 setParameter("id", new Long(id)).getResultList().get(0);
     }
 }

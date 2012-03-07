@@ -79,7 +79,7 @@
                                 <table cellspacing="6">
                                     <tr>
                                         <td><b>Nombre:</b> ${personaBean.usuario.idPersonaFk.nombre}</td> 
-                                        <td><b>Apellidos:</b> ${personaBean.usuario.idPersonaFk.apellido1} ${personaBean.usuario.idPersona.apellido2}</td>
+                                        <td><b>Apellidos:</b> ${personaBean.usuario.idPersonaFk.apellido1} ${personaBean.usuario.idPersonaFk.apellido2}</td>
                                     </tr>
                                     <tr>
                                         <td><b>Dirección:</b> ${personaBean.usuario.idPersonaFk.direccion}</td>

@@ -30,13 +30,13 @@ public class MensajeFacade extends AbstractFacade<Mensaje> {
     }
 
     public List<Mensaje> findHigher(String idm, String ses, String tel) {
-        return em.createQuery("SELECT m FROM Mensaje m WHERE m.idMensaje > :idm AND m.idUsuario = :ses AND m.teleasistencia = :tel ORDER BY m.idMensaje ASC").
+        return em.createQuery("SELECT m FROM Mensaje m WHERE m.id > :idm AND m.idUsuario = :ses AND m.teleasistencia = :tel ORDER BY m.id ASC").
                 setParameter("idm", new Long(idm)).setParameter("ses", new BigInteger(ses)).
                 setParameter("tel", new BigInteger(tel)).getResultList();
     }
 
     public Mensaje findByData(String ses, String tel, String txt) {
-        return (Mensaje)em.createQuery("SELECT m FROM Mensaje m WHERE m.texto = :txt AND m.idUsuario = :ses AND m.teleasistencia = :tel ORDER BY m.idMensaje DESC").
+        return (Mensaje)em.createQuery("SELECT m FROM Mensaje m WHERE m.texto = :txt AND m.idUsuario = :ses AND m.teleasistencia = :tel ORDER BY m.id DESC").
                 setParameter("txt", txt).setParameter("ses", new BigInteger(ses)).
                 setParameter("tel", new BigInteger(tel)).getResultList().get(0);
     }

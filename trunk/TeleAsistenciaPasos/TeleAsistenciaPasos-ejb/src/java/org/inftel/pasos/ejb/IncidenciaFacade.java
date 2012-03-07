@@ -30,13 +30,12 @@ public class IncidenciaFacade extends AbstractFacade<Incidencia> {
     public List  findAllIncidencias() {
         return em.createQuery("SELECT per.NOMBRE,per.APELLIDO1,per.APELLIDO2,ti.DESCRIPCION,i.FECHA,i.TEMPERATURA,i.NIVEL_BATERIA"
                 + "FROM PERSONA per, TIPO_INCIDENCIA ti,INCIDENCIA i,USUARIO u "
-                + "WHERE i.ID_USUARIO=u.ID_USUARIO AND u.ID_PERSONA=per.ID_PERSONA AND i.ID_TINCIDENCIA=ti.ID")
+                + "WHERE i.IDUSUARIOFK=u.ID AND u.IDPERSONAFK=per.ID AND i.IDTINCIDENCIAFK=ti.ID")
                 .getResultList();
     }
 
     public List<Incidencia> findHigher(String ultimo) {
-        return em.createQuery("SELECT i FROM Incidencia i WHERE i.incidencia > :ultimo ORDER BY i.incidencia ASC").
+        return em.createQuery("SELECT i FROM Incidencia i WHERE i.id > :ultimo ORDER BY i.id ASC").
                 setParameter("ultimo", new Long(ultimo)).getResultList();
-    }
-    
+    }    
 }
