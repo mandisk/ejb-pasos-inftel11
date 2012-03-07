@@ -44,16 +44,16 @@
     <persona id="-1129" telefono="34625837928" apellido1="Jimenez" apellido2="Ruiz" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-25" email="ajr_neo@hotmail.com" nombre="Alberto"/>
     <persona id="-1079" telefono="952000000" apellido1="Valls" apellido2="Vorndran" direccion="C\ La Paz" localidad="Rincon de la Victoria" provincia="Malaga" codpostal="29730" fecnacimiento="2012-01-19" email="mandisk@gmail.com" nombre="Manuel"/>    
    
-    <usuario id="-701" id_persona_fk="-100" imei="12345678911111"/>
-    <usuario id="-702" id_persona_fk="-200" imei="12345678911222"/>
-    <usuario id="-703" id_persona_fk="-300" imei="12345678911333"/>
-    <usuario id="-704" id_persona_fk="-400" imei="12345678911444"/>
-    <usuario id="-705" id_persona_fk="-500" imei="12345678911555"/>
-    <usuario id="-1163" id_persona_fk="-1164" imei="1234567855"/>
-    <usuario id="-1160" id_persona_fk="-1161" imei="12345678977"/>
-    <usuario id="-1128" id_persona_fk="-1129" imei="363623627"/>
-    <usuario id="-1075" id_persona_fk="-1076" imei="5674575674"/>
-    <usuario id="-1078" id_persona_fk="-1079" imei="12347686756"/>
+    <usuario id="-701" id_persona_fk="-100" imei="12345678911111" grupo="montanero"/>
+    <usuario id="-702" id_persona_fk="-200" imei="12345678911222" grupo="montanero"/>
+    <usuario id="-703" id_persona_fk="-300" imei="12345678911333" grupo="montanero"/>
+    <usuario id="-704" id_persona_fk="-400" imei="12345678911444" grupo="montanero"/>
+    <usuario id="-705" id_persona_fk="-500" imei="12345678911555" grupo="montanero"/>
+    <usuario id="-1163" id_persona_fk="-1164" imei="1234567855" grupo="montanero"/>
+    <usuario id="-1160" id_persona_fk="-1161" imei="12345678977" grupo="montanero"/>
+    <usuario id="-1128" id_persona_fk="-1129" imei="355797045344688" grupo="montanero"/>
+    <usuario id="-1075" id_persona_fk="-1076" imei="5674575674" grupo="montanero"/>
+    <usuario id="-1078" id_persona_fk="-1079" imei="12347686756" grupo="montanero"/>
     
     <empleado id="-100" id_persona_fk="-1000" contrasena="81dc9bdb52d04dc20036dbd8313ed055" usuario="aljiru" id_turno_fk="-1"/>
     <empleado id="-110" id_persona_fk="-1001" contrasena="81dc9bdb52d04dc20036dbd8313ed055" usuario="valls" id_turno_fk="-4"/>
