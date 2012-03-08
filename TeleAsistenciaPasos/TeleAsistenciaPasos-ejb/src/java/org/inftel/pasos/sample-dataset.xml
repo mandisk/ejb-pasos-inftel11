@@ -28,7 +28,7 @@
     <turno id="-7" descripcion="tarde completa 15:00-21:00"/>
     
     <persona id="-1164" telefono="34625837928" apellido1="Jimenez" apellido2="Ruiz" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-12" email="ajr_neo@hotmail.com" nombre="Alberto"/>
-    <persona id="-1161" telefono="34625837928" apellido1="Jimenez" apellido2="Ruiz" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-12" email="ajr_neo@hotmail.com" nombre="Alberto"/>
+    <persona id="-1161" telefono="34625837928" apellido1="Rodriguez" apellido2="Gonzalez" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-12" email="ajr_neo@hotmail.com" nombre="Juan Manuel"/>
     <persona id="-6" telefono="666111600" apellido1="Pulido" apellido2="Alarcon" direccion="Avda Marmoles, 4, 5ºC" localidad="Malaga" provincia="Malaga" codpostal="29009" fecnacimiento="1980-07-12" email="alarconpulido@mail.es" nombre="Juan"/>
     <persona id="-7" telefono="666111700" apellido1="Alado" apellido2="Castellon" direccion="Calle Comedias, 3, 3ºB" localidad="Malaga" provincia="Malaga" codpostal="29010" fecnacimiento="1979-06-12" email="castelloalado@mail.es" nombre="Antonia"/>
     <persona id="-8" telefono="666111800" apellido1="Loro" apellido2="Carrasco" direccion="Avda Andalucia, 1" localidad="Lepe" provincia="Huelva" codpostal="21440" fecnacimiento="1983-05-12" email="carrascoloro@mail.es" nombre="Fernando"/>
@@ -42,9 +42,9 @@
     <persona id="-1000" telefono="666000200" apellido1="Garrido" apellido2="Ruiz" direccion="Pablo Picasso, 12, 2ºC" localidad="Madrid" provincia="Madrid" codpostal="29009" fecnacimiento="1970-07-12" email="ruizgarrido@mail.es" nombre="Carlos"/>
     <persona id="-1001" telefono="666000300" apellido1="Sunto" apellido2="Tejero" direccion="Avda Reyes Catolicos, 34, 2ºB" localidad="Madrid" provincia="Madrid" codpostal="29010" fecnacimiento="1977-06-12" email="tejerosunto@mail.es" nombre="Alfonso"/>
     <persona id="-1002" telefono="666000400" apellido1="Valad" apellido2="Florencio" direccion="Calle Gongora, 23, 4ºA" localidad="Mostoles" provincia="Madrid" codpostal="28800" fecnacimiento="1978-05-12" email="florenciovalad@mail.es" nombre="Maria"/>
-    <persona id="-1076" telefono="34625837928" apellido1="Jimenez" apellido2="Ruiz" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-17" email="ajr_neo@hotmail.com" nombre="Alberto"/>
+    <persona id="-1076" telefono="34625837928" apellido1="Diaz" apellido2="Rodriguez" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-17" email="ajr_neo@hotmail.com" nombre="Antonio"/>
     <persona id="-1129" telefono="34625837928" apellido1="Jimenez" apellido2="Ruiz" direccion="C/Murcia 62, 3-2" localidad="Almeria" provincia="Almeria" codpostal="4004" fecnacimiento="2012-01-25" email="ajr_neo@hotmail.com" nombre="Alberto"/>
-    <persona id="-1079" telefono="952000000" apellido1="Valls" apellido2="Vorndran" direccion="C\ La Paz" localidad="Rincon de la Victoria" provincia="Malaga" codpostal="29730" fecnacimiento="2012-01-19" email="mandisk@gmail.com" nombre="Manuel"/>    
+    <persona id="-1079" telefono="952000000" apellido1="Romera" apellido2="Luzon" direccion="C\ La Paz" localidad="Rincon de la Victoria" provincia="Malaga" codpostal="29730" fecnacimiento="2012-01-19" email="mandisk@gmail.com" nombre="Francisco"/>    
    
     <usuario id="-701" id_persona_fk="-100" imei="12345678911111" grupo="montanero"/>
     <usuario id="-702" id_persona_fk="-200" imei="12345678911222" grupo="montanero"/>
@@ -76,6 +76,5 @@
     <incidencia id="-1165" fecha="1970-01-01" longitud="123" latitud="38" altitud="111" temperatura="12" nivel_bateria="35" num_satelites="4" id_tincidencia_fk="-2222" id_usuario_fk="-1163"/>
     
     <mensaje id="-39" id_usuario="-1163" teleasistencia="1" texto="Wenas!" fecha="2012-01-28"/>
-    <mensaje id="-40" id_usuario="-1163" teleasistencia="0" texto="nas..." fecha="2012-01-28"/>       
-        
+    <mensaje id="-40" id_usuario="-1163" teleasistencia="0" texto="nas..." fecha="2012-01-28"/>               
 </dataset>
