@@ -55,7 +55,7 @@ public class TipoIncidenciaFacadeREST extends AbstractFacade<TipoIncidencia> {
 
     @GET
     @Override
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<TipoIncidencia> findAll() {
         return super.findAll();
     }
