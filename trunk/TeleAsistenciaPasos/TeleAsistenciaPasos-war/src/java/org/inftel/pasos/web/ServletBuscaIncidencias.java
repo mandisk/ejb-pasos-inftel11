@@ -49,10 +49,9 @@ public class ServletBuscaIncidencias extends HttpServlet {
                     out.println("<td>" + in.getIdUsuarioFk().getIdPersonaFk().getApellido1());
                     out.println(in.getIdUsuarioFk().getIdPersonaFk().getApellido2() + "</td>");
                     if (in.getIdEmpleadoFk() != null) {
-                        out.println("<td>" + in.getIdEmpleadoFk().getIdPersonaFk().getNombre() + "</td>");
-                        out.println("<td>" + in.getIdEmpleadoFk().getIdPersonaFk().getApellido1() + "</td>");
+                        out.println("<td>" + in.getIdEmpleadoFk().getIdPersonaFk().getNombre());
+                        out.println(in.getIdEmpleadoFk().getIdPersonaFk().getApellido1() + "</td>");
                     } else {
-                        out.println("<td></td>");
                         out.println("<td></td>");
                     }
 
@@ -62,6 +61,7 @@ public class ServletBuscaIncidencias extends HttpServlet {
                         out.println("<td></td>");
                     }
 
+                    out.println("<td>" + in.getFecha() + "</td>");
                     out.println("<td>" + in.getFecha() + "</td>");
                     out.println("<td>" + in.getTemperatura() + "ºC</td>");
                     out.println("<td>" + in.getNivelBateria() + "%</td>");
