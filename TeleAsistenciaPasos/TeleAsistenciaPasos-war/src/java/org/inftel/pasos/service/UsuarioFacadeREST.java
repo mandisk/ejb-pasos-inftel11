@@ -59,7 +59,8 @@ public class UsuarioFacadeREST extends AbstractFacade<Usuario> {
     @Produces({"application/json"})
     public Usuario findByImei(@PathParam("imei") Long imei) {
         String simei = String.valueOf(imei);
-        Usuario us = (Usuario) em.createNamedQuery("Usuario.findByImei").setParameter("imei", new BigInteger(simei)).
+        Usuario us = (Usuario) em.createNamedQuery("Usuario.findByImei").
+                setParameter("imei", new BigInteger(simei)).
                 getSingleResult();
         return us;
     }

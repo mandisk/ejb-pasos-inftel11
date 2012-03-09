@@ -11,7 +11,6 @@ import javax.persistence.PersistenceContext;
 import javax.ws.rs.*;
 import org.inftel.pasos.entity.TipoIncidencia;
 
-
 /**
  *
  * @author aljiru
@@ -19,6 +18,7 @@ import org.inftel.pasos.entity.TipoIncidencia;
 @Stateless
 @Path("tipoincidencia")
 public class TipoIncidenciaFacadeREST extends AbstractFacade<TipoIncidencia> {
+
     @PersistenceContext(unitName = "TeleAsistenciaPasos-warPU")
     private EntityManager em;
 
@@ -57,7 +57,7 @@ public class TipoIncidenciaFacadeREST extends AbstractFacade<TipoIncidencia> {
     @Override
     @Produces({"application/json"})
     public List<TipoIncidencia> findAll() {
-        return super.findAll();
+        return (List<TipoIncidencia>) em.createQuery("SELECT t.id, t.descripcion FROM TipoIncidencia t").getResultList();        
     }
 
     @GET
@@ -78,5 +78,4 @@ public class TipoIncidenciaFacadeREST extends AbstractFacade<TipoIncidencia> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
 }
