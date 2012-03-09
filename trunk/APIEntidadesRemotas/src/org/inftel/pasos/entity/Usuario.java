@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u"),
     @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.id = :idUsuario"),
-    @NamedQuery(name = "Usuario.findByImei", query = "SELECT u FROM Usuario u WHERE u.imei = :imei")})
+    @NamedQuery(name = "Usuario.findByImei", query = "SELECT u.id, u.foto, u.imei, u.grupo, u.idPersonaFk FROM Usuario u WHERE u.imei = :imei")})
 public class Usuario extends BaseEntity {
     @Lob
     @Column(name = "FOTO")

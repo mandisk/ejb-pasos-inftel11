@@ -62,6 +62,8 @@ public class UsuarioFacadeREST extends AbstractFacade<Usuario> {
         Usuario us = (Usuario) em.createNamedQuery("Usuario.findByImei").
                 setParameter("imei", new BigInteger(simei)).
                 getSingleResult();
+        us.getIdPersonaFk().setUsuarioCollection(null);
+        us.setIncidenciaCollection(null);
         return us;
     }
 
