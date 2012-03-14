@@ -74,9 +74,6 @@
                                             <th>Atendido por</th>
                                             <th>Tipo Incidencia</th>
                                             <th>Fecha</th>
-                                            <th>Hora</th>
-                                            <th>Temperatura</th>
-                                            <th>Nivel de batería</th>
                                             <th>Acci&oacute;n</th>
                                         </tr>
                                     </thead>
@@ -90,10 +87,7 @@
                                                 <td>${order.idEmpleadoFk.idPersonaFk.nombre} 
                                                     ${order.idEmpleadoFk.idPersonaFk.apellido1}</td> 
                                                 <td>${order.idTincidenciaFk.descripcion}</td> 
-                                                <td>${order.fecha}</td> 
-                                                <td>${order.fecha}</td> 
-                                                <td>${order.temperatura}ºC</td> 
-                                                <td>${order.nivelBateria}%</td> 
+                                                <td>${order.fecha}</td>
                                                 <td><a href="${pageContext.request.contextPath}/comUsuario?action=com&idPersona=${order.idUsuarioFk.id}">Atender Usuario</a></td>
                                             </tr>
                                         </c:forEach>

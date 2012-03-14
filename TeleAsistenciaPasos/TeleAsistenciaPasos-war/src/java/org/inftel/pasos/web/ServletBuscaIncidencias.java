@@ -62,9 +62,6 @@ public class ServletBuscaIncidencias extends HttpServlet {
                     }
 
                     out.println("<td>" + in.getFecha() + "</td>");
-                    out.println("<td>" + in.getFecha() + "</td>");
-                    out.println("<td>" + in.getTemperatura() + "ºC</td>");
-                    out.println("<td>" + in.getNivelBateria() + "%</td>");
                     out.println("<td><a href='comUsuario?action=com&idPersona=" + in.getIdUsuarioFk().
                             getId() + "'>Atender Usuario</a></td>");
                     out.println("</tr>");
